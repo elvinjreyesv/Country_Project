@@ -1,0 +1,15 @@
+[
+  {
+    "outputFileName": "wwwroot/js/bundle.public.js",
+    "inputFiles": [
+      "wwwroot/js/app/*.js",
+      "wwwroot/js/app/Public/*.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/style.min.css",
+    "inputFiles": [
+      "wwwroot/css/style.css"
+    ]
+  }
+]

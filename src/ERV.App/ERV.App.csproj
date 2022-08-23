@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ERV.App.Infraestructure\ERV.App.Infraestructure.csproj" />
+    <ProjectReference Include="..\ERV.App.Models\ERV.App.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataAccess\Repositories\Abstracts\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Services\Abstracts\" />
+  </ItemGroup>
+
+</Project>
