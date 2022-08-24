@@ -10,6 +10,7 @@ using ERV.App.Models.ViewModels.Public.Inputs;
 using ERV.App.Models.ViewModels.Public.Outputs;
 using ERV.Web.Utils.Extensions;
 using ERV.App.Infrastructure.Utils.Constants;
+using X.PagedList;
 
 namespace ERV.Web.Controllers
 {
@@ -25,97 +26,10 @@ namespace ERV.Web.Controllers
         {
             try
             {
-                var result = await ApiClient.GetCountries(InputParameter, AppSettings.SecretKey);
+                var result = (await ApiClient.GetCountries(InputParameter, AppSettings.SecretKey))
+                    .ToPagedList(page ?? 1, 20);
 
                 return View(result);
-            }
-            catch (Exception ex)
-            {
-                return await Error(EErrorCodeClientApi.HomeController, ex);
-            }
-        }
-
-        [HttpGet("Country")]
-        public async Task<IActionResult> Country([FromQuery] string code)
-        {
-            if(string.IsNullOrWhiteSpace(code))
-            {
-                TempData.Put(TempDataKeyConstants.ErrorMessage, "There is no country selected to continue!");
-                return View(new CountryDTO());
-            }
-
-            try
-            {
-                var input = new CountryInputDTO()
-                {
-                    Code = code,
-                    Id = InputParameter.Id
-                };
-
-                var result = await ApiClient.GetCountry(input, AppSettings.SecretKey);
-                if(result.Status != EAppResponse.Success)
-                    TempData.Put(TempDataKeyConstants.ErrorMessage, "There are no results for the current search!");
-
-                return View(result.Result);
-            }
-            catch (Exception ex)
-            {
-                return await Error(EErrorCodeClientApi.HomeController, ex);
-            }
-        }
-
-        [HttpGet("Region")]
-        public async Task<IActionResult> Region([FromQuery] string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                TempData.Put(TempDataKeyConstants.ErrorMessage, "There is no region selected to continue!");
-                return View(new RegionDTO());
-            }
-
-            try
-            {
-                var input = new RegionInputDTO()
-                {
-                    Name = name,
-                    Id = InputParameter.Id
-                };
-
-                var result = await ApiClient.GetRegion(input, AppSettings.SecretKey);
-
-                if (result.Status != EAppResponse.Success)
-                    TempData.Put(TempDataKeyConstants.ErrorMessage, "There are no results for the current search!");
-
-                return View(result.Result);
-            }
-            catch (Exception ex)
-            {
-                return await Error(EErrorCodeClientApi.HomeController, ex);
-            }
-        }
-
-        [HttpGet("SubRegion")]
-        public async Task<IActionResult> SubRegion([FromQuery] string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                TempData.Put(TempDataKeyConstants.ErrorMessage, "There is no region selected to continue!");
-                return View(new SubRegionDTO());
-            }
-
-            try
-            {
-                var input = new RegionInputDTO()
-                {
-                    Name = name,
-                    Id = InputParameter.Id
-                };
-
-                var result = await ApiClient.GetSubRegion(input, AppSettings.SecretKey);
-                if (result.Status != EAppResponse.Success)
-                    TempData.Put(TempDataKeyConstants.ErrorMessage, "There are no results for the current search!");
-
-                return View(result.Result);
             }
             catch (Exception ex)
             {

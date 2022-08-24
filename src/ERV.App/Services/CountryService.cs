@@ -36,7 +36,7 @@ namespace ERV.App.Services
                         Flag = row.flags.png,
                         Region = row.region,
                         SubRegion = row.subregion
-                    }).ToList();
+                    }).OrderBy(row=>row.Name).ToList();
                 }
 
                 return output;
@@ -149,7 +149,7 @@ namespace ERV.App.Services
                 });
             }
            
-            return output;
+            return output.OrderBy(row => row.Name).ToList();
         }
         private async Task<List<SubRegionDTO>> MapSubRegionsContent(List<Country> countries)
         {
@@ -165,7 +165,7 @@ namespace ERV.App.Services
                 });
             }
 
-            return output;
+            return output.OrderBy(row => row.Name).ToList();
         }
         #endregion
     }

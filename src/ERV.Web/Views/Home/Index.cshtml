@@ -1,8 +1,83 @@
-﻿@{
+﻿@model IPagedList<CountryInfoDTO>
+@{
     ViewData["Title"] = "Home Page";
+
+    var toHeader = new TopHeaderDTO()
+            {
+                AdditionalText = Lang("_Ontology"),
+                Image = "images/top/continent.jpg",
+                BreadCrumb = new List<BreadCrumbDTO>()
+        {
+            new BreadCrumbDTO()
+            {
+                Action = Url.Action("Index", "Home"),
+                Text = Lang("_Home"),
+                Order = 1
+            }
+        }
+            };
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@await Html.PartialAsync("~/Views/Shared/Partials/_Top.cshtml", toHeader)
+
+<div class="container mt-3">
+    <div class="row mb-1 align-items-center destination">
+        <div class="col-lg-6" style="z-index:9999">
+            <h3 class="font-weight-bold heading">
+                Country List
+            </h3>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+            <p>
+                <a asp-controller="Country" asp-action="Index" class="btn btn-light btn-sm">View All Countries</a>
+            </p>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        @if (Model.ToList() != null && Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-6 country-box mt-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div><img class="img-fluid rounded float-start mx-auto d-block" src="@item.Flag" /></div>
+                        </div>
+                        <div class="col-sm-8" style="margin-left:-1.8rem;">
+                            <ul class="country-info">
+                                <li><span class="fw-bold">Country: </span> <a class="btn btn-link" asp-controller="Country" asp-action="Country" asp-route-code="@item.Code">@item.Name</a></li>
+                                @if (!string.IsNullOrWhiteSpace(item.Region))
+                                {
+                                    <li><span class="fw-bold">Region: </span>  <a class="btn btn-link" asp-controller="Country" asp-action="Region" asp-route-name="@item.Region">@item.Region</a></li>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(item.SubRegion))
+                                {
+                                    <li><span class="fw-bold">SubRegion: </span> <a class="btn btn-link" asp-controller="Country" asp-action="SubRegion" asp-route-region="@item.Region">@item.SubRegion</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="row">
+        <div class="col-sm-12 mt-2 d-flex justify-content-center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "Home",
+            new { page = page }), 
+            new PagedListRenderOptions {
+                ActiveLiElementClass = "active",
+                PageClasses = new[]{ "page-link"},
+                LiElementClasses=new[] { "page-item" },
+                UlElementClasses = new[] { "pagination","justify-content-center", "mt-3" },
+                LinkToNextPageFormat = "Next",
+                LinkToPreviousPageFormat = "Previous",
+                MaximumPageNumbersToDisplay = 3,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always
+                
+            })
+        </div>
+    </div>
 </div>
