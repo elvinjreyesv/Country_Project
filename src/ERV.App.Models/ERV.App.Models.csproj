@@ -8,9 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Enums\" />
-    <Folder Include="ViewModels\Shared\" />
-    <Folder Include="ViewModels\Public\" />
+    <Folder Include="ViewModels\Public\Inputs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
 </Project>
