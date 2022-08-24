@@ -21,17 +21,14 @@ namespace ERV.App.Infrastructure.Utils
         {
             _resourceManager = resourceManager;
         }
-
         public string GetString(string name)
         {
             return _resourceManager.GetString(name);
         }
-
         public string GetString(string name, CultureInfo culture)
         {
             return _resourceManager.GetString(name, culture) ?? "";
         }
-
         public string GetStringOrNull(string name, bool tryDefaults = true)
         {
             return _resourceManager.GetString(name) ?? (tryDefaults ? "" : null);

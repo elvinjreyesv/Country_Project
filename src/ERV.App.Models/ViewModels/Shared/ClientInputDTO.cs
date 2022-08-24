@@ -19,22 +19,11 @@ namespace ERV.App.Models.ViewModels.Shared
         [JsonIgnore]
         public string IpAddressService { get; set; }
 
-        [Required, JsonProperty("SiteId")]
-        public string SiteId { get; set; }
+        [Required, JsonProperty("Id")]
+        public string Id { get; set; }
 
         public virtual void SetDefaults()
         {
-        }
-    }
-
-    public class ClientInternationalizationInputDTO : ClientInputDTO
-    {
-        public string Lang { get; set; }
-
-        public override void SetDefaults()
-        {
-            base.SetDefaults();
-            Lang = Lang ?? "ENG";
         }
     }
 }

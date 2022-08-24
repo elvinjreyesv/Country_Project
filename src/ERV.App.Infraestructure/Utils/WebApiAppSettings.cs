@@ -9,7 +9,7 @@ namespace ERV.App.Infrastructure.Utils
     public class WebApiAppSettings
     {
         public List<SiteInfo> SiteInfos { get; set; }
-        public ExternalServices ExternalServices { get; set; }
+        public List<ExternalServices> ExternalServices { get; set; }
         public JwtConfig JwtConfig { get; set; }
     }
     public class JwtConfig

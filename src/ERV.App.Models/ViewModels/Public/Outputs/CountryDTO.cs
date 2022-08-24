@@ -8,7 +8,8 @@ namespace ERV.App.Models.ViewModels.Public.Outputs
 {
     public class CountryDTO
     {
-        public string Country { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
         public List<string> CapitalCities { get; set; }
         public int Population { get; set; }
         public List<CurrencyDTO> Currencies { get; set; }

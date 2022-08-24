@@ -17,8 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Public\" />
-    <Folder Include="Filters\Public\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 

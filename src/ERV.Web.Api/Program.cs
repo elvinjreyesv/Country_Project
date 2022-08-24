@@ -1,4 +1,8 @@
+using ERV.App.DataAccess.Repositories;
+using ERV.App.DataAccess.Repositories.Abstracts;
 using ERV.App.Infrastructure.Utils;
+using ERV.App.Services;
+using ERV.App.Services.Abstracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -38,7 +42,12 @@ builder.Services.AddControllers(setupAction =>
     setupAction.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
 
 }).AddXmlSerializerFormatters();
+
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<ISettingsService, SettingsService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -11,7 +11,9 @@ namespace ERV.App.Models.Enums
         InvalidInput,
         Success,
         Error,
+        NoResults,
         UnhandledError,
-        UnableComplete
+        UnableComplete,
+        InvalidToken
     }
 }

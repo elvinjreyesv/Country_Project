@@ -9,7 +9,7 @@ namespace ERV.App.Models.ViewModels.Public.Outputs
     public class RegionDTO
     {
         public string Name { get; set; }
-        public List<CountryDTO> Countries { get; set; }
-        public int TotalPopulation => Countries.Sum(row => row.Population);
+        public List<SubRegionDTO> SubRegions { get; set; }
+        public int TotalPopulation => SubRegions.Sum(row => row.TotalPopulation);
     }
 }

@@ -10,9 +10,9 @@ namespace ERV.App.Models.Entities
     {
         public Name name { get; set; }
         //public List<string> tld { get; set; }
-        //public string cca2 { get; set; }
+        public string cca2 { get; set; }
         //public string ccn3 { get; set; }
-        //public string cca3 { get; set; }
+        public string cca3 { get; set; }
         //public string cioc { get; set; }
         //public bool independent { get; set; }
         //public string status { get; set; }

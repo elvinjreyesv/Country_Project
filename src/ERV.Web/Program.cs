@@ -1,5 +1,7 @@
 using ERV.App.Infrastructure.Utils;
 using ERV.Web.Resources;
+using ERV.Web.Utils.Services;
+using ERV.Web.Utils.Services.Abstracts;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +16,7 @@ builder.Services.Configure<HtmlHelperOptions>(o => o.ClientValidationEnabled = t
 
 builder.Services.AddOptions();
 builder.Services.Configure<WebAppSettings>(builder.Configuration.GetSection("AppSettings"));
-//builder.AddScoped<IApiClientService, ApiClientService>();
+builder.Services.AddScoped<IApiClientService, ApiClientService>();
 
 var app = builder.Build();
 

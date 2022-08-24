@@ -13,7 +13,5 @@ namespace ERV.App.Infrastructure.Utils
         public string WebApiBaseUrl { get; set; }
         public string BaseUrl { get; set; }
         public string SecretKey { get; set; }
-        public string AesKey { get; set; }
-        public string AesIv { get; set; }
     }
 }
