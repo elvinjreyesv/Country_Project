@@ -7,12 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ERV.App.Infraestructure\ERV.App.Infraestructure.csproj" />
+    <Folder Include="Utils\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utils\" />
-    <Folder Include="wwwroot\images\" />
+    <ProjectReference Include="..\ERV.App.Infraestructure\ERV.App.Infrastructure.csproj" />
+    <ProjectReference Include="..\ERV.App.Models\ERV.App.Models.csproj" />
   </ItemGroup>
 
 </Project>

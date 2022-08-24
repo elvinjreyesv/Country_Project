@@ -1,2 +1,10 @@
 ﻿@using ERV.Web
+@inject IOptions<WebAppSettings> settings
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inherits ERV.Web.Views.PublicViewPageBase<TModel>
+
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Http.Extensions;
+@using ERV.App.Infrastructure.Utils;
+@using ERV.App.Models.Enums;
+@using ERV.App.Models.ViewModels.Shared;

@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ERV.App.Infraestructure\ERV.App.Infraestructure.csproj" />
-    <ProjectReference Include="..\ERV.App.Models\ERV.App.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="DataAccess\Repositories\Abstracts\" />
     <Folder Include="Utils\" />
     <Folder Include="Services\Abstracts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ERV.App.Infraestructure\ERV.App.Infrastructure.csproj" />
+    <ProjectReference Include="..\ERV.App.Models\ERV.App.Models.csproj" />
   </ItemGroup>
 
 </Project>
