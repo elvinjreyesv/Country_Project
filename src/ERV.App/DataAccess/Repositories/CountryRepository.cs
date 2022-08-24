@@ -3,6 +3,7 @@ using ERV.App.DataAccess.Repositories.Abstracts;
 using ERV.App.Infrastructure.Utils;
 using ERV.App.Infrastructure.Utils.Constants;
 using ERV.App.Models.Entities;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Refit;
 using System;
@@ -15,12 +16,22 @@ namespace ERV.App.DataAccess.Repositories
 {
     public class CountryRepository: ICountryRepository
     {
+        private readonly IMemoryCache _memoryCache;
         private readonly WebApiAppSettings _settings;
         private readonly string ApiUrl;
-        public CountryRepository(IOptions<WebApiAppSettings> options)
+        private readonly MemoryCacheEntryOptions cacheExpiryOptions;
+        public CountryRepository(IOptions<WebApiAppSettings> options, IMemoryCache memoryCache)
         {
+            _memoryCache = memoryCache;
             _settings = options.Value;
-            ApiUrl = _settings.ExternalServices?.FirstOrDefault(row => row.Name == ApiKeyConstants.Country_Key)?.BaseUrl ?? string.Empty;
+            ApiUrl = _settings.ExternalServices?.FirstOrDefault(row => row.Key == ApiKeyConstants.Country_Key)?.BaseUrl ?? string.Empty;
+
+            cacheExpiryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.Now.AddSeconds(_settings.CacheConfiguration.AbsoluteExpirationSeconds),
+                Priority = CacheItemPriority.Normal,
+                SlidingExpiration = TimeSpan.FromSeconds(_settings.CacheConfiguration.SlidingExpirationSeconds)
+            };
         }
         public IApiMethods Rest => RestService.For<IApiMethods>(ApiUrl);
 
@@ -28,7 +39,13 @@ namespace ERV.App.DataAccess.Repositories
         {
             try
             {
-                return await Rest.GetCountries();
+                if (!_memoryCache.TryGetValue(CacheKeyConstants.Countries, out List<Country> countries))
+                {
+                    countries = await Rest.GetCountries();
+                    _memoryCache.Set(CacheKeyConstants.Countries, countries, cacheExpiryOptions);
+                }
+
+                return countries;
             }
             catch (Exception ex)
             {
@@ -39,7 +56,19 @@ namespace ERV.App.DataAccess.Repositories
         {
             try
             {
-                return await Rest.GetCountryDetails(countryCode);
+                var country = new Country();
+                var cacheKey = $"{CacheKeyConstants.Country}_{countryCode}";
+
+                if (!_memoryCache.TryGetValue(CacheKeyConstants.Countries, out List<Country> countries)
+                    && !_memoryCache.TryGetValue(cacheKey, out country))
+                {
+                    country = await Rest.GetCountryDetails(countryCode);
+                    _memoryCache.Set(cacheKey, country, cacheExpiryOptions);
+                }
+                else
+                    country = countries.FirstOrDefault(row => row != null && row.cca2 == countryCode);
+                    
+                return country;
             }
             catch (Exception ex)
             {
@@ -50,7 +79,14 @@ namespace ERV.App.DataAccess.Repositories
         {
             try
             {
-                return await Rest.GetRegionDetails(region);
+                var cacheKey = $"{CacheKeyConstants.Region}_{region}";
+                if (!_memoryCache.TryGetValue(cacheKey, out List<Country> regionDetails))
+                {
+                    regionDetails = await Rest.GetRegionDetails(region);
+                    _memoryCache.Set(cacheKey, regionDetails, cacheExpiryOptions);
+                }
+
+                return regionDetails;
             }
             catch (Exception ex)
             {
@@ -61,7 +97,13 @@ namespace ERV.App.DataAccess.Repositories
         {
             try
             {
-                return await Rest.GetSubRegions(region);
+                var cacheKey = $"{CacheKeyConstants.SubRegion}_{region}";
+                if (!_memoryCache.TryGetValue(cacheKey, out List<Country> subRegionDetails))
+                {
+                    subRegionDetails = await Rest.GetSubRegions(region);
+                    _memoryCache.Set(cacheKey, subRegionDetails, cacheExpiryOptions);
+                }
+                return subRegionDetails;
             }
             catch (Exception ex)
             {

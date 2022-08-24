@@ -38,16 +38,14 @@ namespace ERV.Web.Api.Filters
                 if (!(context.ActionArguments[key] is ClientInputDTO dto))
                     continue;
 
-                dto.IpAddressService = context.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "::1";
-
                 pageValidated = true;
-                var isPageRequest = IsValidRequest(context.ActionArguments[key], dto.Id, dto.Token);
+                var isValidRequest = IsValidRequest(context.ActionArguments[key], dto.Id, dto.Token);
+
                 dto.SetDefaults();
-                if (!isPageRequest)
-                    context.Result = new UnauthorizedObjectResult(isPageRequest);
+                if (!isValidRequest)
+                    context.Result = new UnauthorizedObjectResult(isValidRequest);
 
                 dto.Id = _settingsService.SiteInfo(input.Id).Id;
-                dto.IpAddressService = string.Empty;
                 break;
             }
 

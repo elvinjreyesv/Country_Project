@@ -11,6 +11,7 @@ namespace ERV.App.Infrastructure.Utils
         public List<SiteInfo> SiteInfos { get; set; }
         public List<ExternalServices> ExternalServices { get; set; }
         public JwtConfig JwtConfig { get; set; }
+        public CacheConfiguration CacheConfiguration { get; set; }
     }
     public class JwtConfig
     {
@@ -26,6 +27,13 @@ namespace ERV.App.Infrastructure.Utils
     public class ExternalServices
     {
         public string Name { get; set; }
+        public string Key { get; set; }
         public string BaseUrl { get; set; }
+    }
+
+    public class CacheConfiguration
+    {
+        public int AbsoluteExpirationSeconds { get; set; }
+        public int SlidingExpirationSeconds { get; set; }
     }
 }

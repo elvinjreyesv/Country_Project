@@ -45,6 +45,8 @@ builder.Services.AddControllers(setupAction =>
 
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddMemoryCache();
+
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICountryService, CountryService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();

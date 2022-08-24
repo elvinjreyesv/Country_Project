@@ -95,8 +95,8 @@ namespace ERV.Web.Controllers.BaseController
         public ClientInputDTO InputParameter=> new ClientInputDTO
         {
             Id = AppSettings.Id,
-            IpAddressClient = IpAddress,
-            IpAddressService = IpAddress,
+            //IpAddressClient = IpAddress,
+            //IpAddressService = IpAddress,
             Token = string.Empty
         };    
     }

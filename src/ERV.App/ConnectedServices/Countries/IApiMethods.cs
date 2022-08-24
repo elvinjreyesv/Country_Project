@@ -10,16 +10,16 @@ namespace ERV.App.ConnectedServices.Countries
 {
     public interface IApiMethods
     {
-        [Get("all")]
+        [Get("/all")]
         Task<List<Country>> GetCountries();
 
-        [Get("alpha/{code}")]
+        [Get("/alpha/{code}")]
         Task<Country> GetCountryDetails(string code);
 
-        [Get("region/{region}")]
+        [Get("/region/{region}")]
         Task<List<Country>> GetRegionDetails(string region);
 
-        [Get("subregion/{region}")]
+        [Get("/subregion/{region}")]
         Task<List<Country>> GetSubRegions(string region);
     }
 }

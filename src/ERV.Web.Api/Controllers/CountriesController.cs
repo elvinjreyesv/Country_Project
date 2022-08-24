@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ERV.Web.Api.Controllers
 {
-    [Route("api/[controller]/v1/")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     [TypeFilter(typeof(PublicSecurityActionFilter), Order = 1)]
     [TypeFilter(typeof(PublicPostSecurityActionFilter), Order = 2)]
@@ -24,7 +24,7 @@ namespace ERV.Web.Api.Controllers
 
         [HttpGet]
         [Produces(typeof(List<CountryInfoDTO>))]
-        public async Task<ActionResult<List<CountryInfoDTO>>> Get([FromQuery] ClientInputDTO input = null)
+        public async Task<ActionResult<List<CountryInfoDTO>>> Get([FromQuery] ClientInputDTO dto)
         {
             var content = await _countryService.Countries();
             return Ok(content);

@@ -19,8 +19,6 @@ namespace ERV.Web.Api.Filters
             {
                 if (!(context.ActionArguments[key] is ClientInputDTO dto)) continue;
 
-                dto.IpAddressService = context.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "::1";
-
                 if (!(_settingsService.SiteInfo(dto.Id) is SiteInfo info)) continue;
 
                 dto.Id = info.Id;

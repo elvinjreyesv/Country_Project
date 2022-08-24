@@ -16,13 +16,10 @@ namespace ERV.App.Services
     public class CountryService: ICountryService
     {
         private readonly ICountryRepository _countryRepository;
-        private readonly ISettingsService _settingsService;
-        public CountryService(ISettingsService settingsService, ICountryRepository countryRepository)
+        public CountryService(ICountryRepository countryRepository)
         {
-            _settingsService = settingsService;
             _countryRepository = countryRepository;
         }
-
         public async Task<List<CountryInfoDTO>> Countries()
         {
             try
@@ -46,7 +43,6 @@ namespace ERV.App.Services
             }
             catch (Exception ex)
             {
-                //_logSystemService.AddExceptionLog(ex);
                 return Enumerable.Empty<CountryInfoDTO>().ToList();
             }
         }

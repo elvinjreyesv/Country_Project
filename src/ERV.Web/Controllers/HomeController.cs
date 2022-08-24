@@ -21,7 +21,7 @@ namespace ERV.Web.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
             try
             {
@@ -49,9 +49,7 @@ namespace ERV.Web.Controllers
                 var input = new CountryInputDTO()
                 {
                     Code = code,
-                    Id = InputParameter.Id,
-                    IpAddressClient = InputParameter.IpAddressClient,
-                    IpAddressService = InputParameter.IpAddressService
+                    Id = InputParameter.Id
                 };
 
                 var result = await ApiClient.GetCountry(input, AppSettings.SecretKey);
@@ -80,9 +78,7 @@ namespace ERV.Web.Controllers
                 var input = new RegionInputDTO()
                 {
                     Name = name,
-                    Id = InputParameter.Id,
-                    IpAddressClient = InputParameter.IpAddressClient,
-                    IpAddressService = InputParameter.IpAddressService
+                    Id = InputParameter.Id
                 };
 
                 var result = await ApiClient.GetRegion(input, AppSettings.SecretKey);
@@ -112,9 +108,7 @@ namespace ERV.Web.Controllers
                 var input = new RegionInputDTO()
                 {
                     Name = name,
-                    Id = InputParameter.Id,
-                    IpAddressClient = InputParameter.IpAddressClient,
-                    IpAddressService = InputParameter.IpAddressService
+                    Id = InputParameter.Id
                 };
 
                 var result = await ApiClient.GetSubRegion(input, AppSettings.SecretKey);
