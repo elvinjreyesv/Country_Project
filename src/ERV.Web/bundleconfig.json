@@ -1,9 +1,8 @@
 [
   {
-    "outputFileName": "wwwroot/js/bundle.public.js",
+    "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/js/app/*.js",
-      "wwwroot/js/app/Public/*.js"
+      "wwwroot/js/*.js"
     ]
   },
   {
