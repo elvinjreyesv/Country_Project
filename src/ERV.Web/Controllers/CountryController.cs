@@ -14,6 +14,7 @@ using X.PagedList;
 
 namespace ERV.Web.Controllers
 {
+    [Controller]
     public class CountryController : PublicBaseController
     {
         private readonly ILogger<HomeController> _logger;
@@ -22,7 +23,7 @@ namespace ERV.Web.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("Country")]
         public async Task<IActionResult> Index()
         {
             try
@@ -37,7 +38,7 @@ namespace ERV.Web.Controllers
             }
         }
 
-        [HttpGet("{code}")]
+        [HttpGet("Country/{code}")]
         public async Task<IActionResult> Country([FromRoute] string code)
         {
             if (string.IsNullOrWhiteSpace(code))
@@ -66,7 +67,7 @@ namespace ERV.Web.Controllers
             }
         }
 
-        [HttpGet("Region/{name}")]
+        [HttpGet("Country/Region/{name}")]
         public async Task<IActionResult> Region([FromRoute] string name)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -96,7 +97,7 @@ namespace ERV.Web.Controllers
             }
         }
 
-        [HttpGet("SubRegion/{region}")]
+        [HttpGet("Country/SubRegion/{region}")]
         public async Task<IActionResult> SubRegion([FromRoute] string region)
         {
             if (string.IsNullOrWhiteSpace(region))

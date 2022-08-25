@@ -10,8 +10,14 @@ namespace ERV.App.Models.ViewModels.Public.Outputs
     {
         public string Code { get; set; }
         public string Name { get; set; }
-        public string Flag { get; set; }
+        public Flag Flag { get; set; }
         public string Region { get; set; }
         public string SubRegion { get; set; }
+        public int Index { get; set; }
+    }
+    public class Flag
+    {
+        public string Png { get; set; }
+        public string Svg { get; set; }
     }
 }

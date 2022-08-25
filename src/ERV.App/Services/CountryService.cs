@@ -10,6 +10,9 @@ using ERV.App.Infrastructure.Extensions;
 using ERV.App.Models.ViewModels.Shared;
 using ERV.App.Models.Enums;
 using ERV.App.Models.Entities;
+using Newtonsoft.Json;
+using System.Collections;
+using System.Diagnostics.Metrics;
 
 namespace ERV.App.Services
 {
@@ -33,7 +36,11 @@ namespace ERV.App.Services
                     {
                         Code = row.cca2.CleanSpace(),
                         Name = row.name.common,
-                        Flag = row.flags.png,
+                        Flag = new Flag()
+                        {
+                            Png = row.flags.png,
+                            Svg = row.flags.svg
+                        },
                         Region = row.region,
                         SubRegion = row.subregion
                     }).OrderBy(row=>row.Name).ToList();
@@ -134,9 +141,6 @@ namespace ERV.App.Services
                     .Select(row => row.name.common)
                     .ToList()) ?? Enumerable.Empty<string>().ToList();
 
-                var currency = country.currencies;
-                var languages = country.languages;
-
                 output.Add(new CountryDTO()
                 {
                     Code = country.cca2.CleanSpace(),
@@ -144,11 +148,15 @@ namespace ERV.App.Services
                     CapitalCities = country.capital,
                     Population = country.population,
                     BorderCountries = borders,
-                    Flag = country.flags.png,
+                    Flag = new Flag()
+                    {
+                        Png = country.flags.png,
+                        Svg = country.flags.svg
+                    },
                     Region = country.region,
                     SubRegion = country.subregion,
-                    Currencies = Enumerable.Empty<CurrencyDTO>().ToList(),
-                    Languages = Enumerable.Empty<LanguageDTO>().ToList()
+                    Currencies = MapCurrencies(country.currencies),
+                    Languages = MapLanguages(country.languages)
                 });
             }
            
@@ -169,6 +177,36 @@ namespace ERV.App.Services
             }
 
             return output.OrderBy(row => row.Name).ToList();
+        }
+        private List<LanguageDTO> MapLanguages(Hashtable lang)
+        {
+            var languages = Enumerable.Empty<LanguageDTO>().ToList();
+            if (lang != null)
+            {
+                foreach (DictionaryEntry item in lang)
+                    languages.Add(new LanguageDTO()
+                    {
+                        Code = item.Key.ToString() ?? string.Empty,
+                        Name = item.Value.ToString() ?? string.Empty
+                    });
+
+            }
+            return languages;
+        }
+        private List<CurrencyDTO> MapCurrencies(Dictionary<string, Currency> currencies)
+        {
+            var output = Enumerable.Empty<CurrencyDTO>().ToList();
+
+            if (currencies != null)
+                foreach (var item in currencies)
+                    output.Add(new CurrencyDTO()
+                    {
+                        Code = item.Key,
+                        Name = item.Value.name,
+                        Symbol = item.Value.symbol
+                    });
+
+            return output;
         }
         #endregion
     }

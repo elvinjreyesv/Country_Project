@@ -1,5 +1,47 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<CountryInfoDTO>
 @{
+    var toHeader = new TopHeaderDTO()
+    {
+        AdditionalText = "Countries",
+        Image = string.Concat(settings.Value.BaseUrl, "images/top/continent.jpg"),
+        BreadCrumb = new List<BreadCrumbDTO>()
+        {
+             new BreadCrumbDTO()
+             {
+                 Action = Url.Action("Index", "Home"),
+                 Text = Lang("_Home"),
+                 Order = 1
+             },
+            new BreadCrumbDTO()
+            {
+                Action = string.Empty,
+                Text = "Countries",
+                Order = 2,
+            }
+        }
+    };
 }
+
+@await Html.PartialAsync("~/Views/Shared/Partials/_Top.cshtml", toHeader)
+
+<section class="border-bottom mt-2">
+    <div class="container">
+        @if (Model !=null && Model.Any())
+        {
+            <div class="row mb-1 align-items-center header-text mb-3">
+                <div class="col-sm-12">
+                    <h3 class="font-weight-bold heading">
+                        Country List
+                    </h3>
+                </div>
+            </div>
+            <div class="row gx-5 justify-content-between content-row">
+                @foreach (var item in Model)
+                {
+                    item.Index = Model.ToList().IndexOf(item) + 1;
+                    @await Html.PartialAsync("~/Views/Country/Partials/_Country.cshtml", item)
+                }
+            </div>
+        }
+    </div>
+</section>

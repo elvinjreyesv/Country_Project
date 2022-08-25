@@ -10,5 +10,9 @@ namespace ERV.App.Infrastructure.Extensions
         {
             return string.IsNullOrWhiteSpace(str) ? string.Empty : str.Trim();
         }
+        public static string ReplaceAll(this string str)
+        {
+            return str.Replace("{", "").Replace("}", "").Replace("\"","");
+        }
     }
 }

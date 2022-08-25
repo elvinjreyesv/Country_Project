@@ -1,11 +1,9 @@
 ﻿@model IPagedList<CountryInfoDTO>
 @{
-    ViewData["Title"] = "Home Page";
-
     var toHeader = new TopHeaderDTO()
     {
         AdditionalText = "Countries",
-        Image = "images/top/continent.jpg",
+        Image = string.Concat(settings.Value.BaseUrl, "images/top/country.jpg"),
         BreadCrumb = new List<BreadCrumbDTO>()
         {
             new BreadCrumbDTO()
@@ -39,37 +37,8 @@
             <div class="row gx-5 justify-content-between content-row">
                 @foreach (var item in Model)
                 {
-                    var addClass = Model.ToList().IndexOf(item) % 3 != 0 ? "mb-lg-0" : "";
-
-                    <div class="col-sm-6 col-lg-4 mb-3 @addClass">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="feature text-white rounded-3">
-                                    <img class="img-fluid rounded mx-auto d-block" src="@item.Flag" />
-                                </div>
-                            </div>
-                            <div class="col-sm-8">
-                                <h5 class="fw-bolder mt-3">@item.Name</h5>
-                            </div>
-                            <div class="col-sm-12">
-                                <ul class="country-info">
-                                    @if (!string.IsNullOrWhiteSpace(item.Region))
-                                    {
-                                        <li><span>Region: </span>  <a class="btn btn-link text-decoration-none" asp-controller="Country" asp-action="Region" asp-route-name="@item.Region">@item.Region</a></li>
-                                    }
-                                    @if (!string.IsNullOrWhiteSpace(item.SubRegion))
-                                    {
-                                        <li><span>SubRegion: </span> <a class="btn btn-link text-decoration-none" asp-controller="Country" asp-action="SubRegion" asp-route-region="@item.Region">@item.SubRegion</a></li>
-                                    }
-                                    <li class="mt-1">
-                                        <a class="text-decoration-none text-center" asp-controller="Country" asp-action="Country" asp-route-code="@item.Code">
-                                            View country Info
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    item.Index = Model.ToList().IndexOf(item) + 1;
+                    @await Html.PartialAsync("~/Views/Country/Partials/_Country.cshtml", item)
                 }
             </div>
             <div class="row">
