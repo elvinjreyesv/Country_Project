@@ -14,7 +14,7 @@ namespace ERV.App.ConnectedServices.Countries
         Task<List<Country>> GetCountries();
 
         [Get("/alpha/{code}")]
-        Task<Country> GetCountryDetails(string code);
+        Task<List<Country>> GetCountryDetails(string code);
 
         [Get("/region/{region}")]
         Task<List<Country>> GetRegionDetails(string region);

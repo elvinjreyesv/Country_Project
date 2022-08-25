@@ -62,7 +62,7 @@ namespace ERV.App.DataAccess.Repositories
                 if (!_memoryCache.TryGetValue(CacheKeyConstants.Countries, out List<Country> countries)
                     && !_memoryCache.TryGetValue(cacheKey, out country))
                 {
-                    country = await Rest.GetCountryDetails(countryCode);
+                    country = (await Rest.GetCountryDetails(countryCode)).FirstOrDefault();
                     _memoryCache.Set(cacheKey, country, cacheExpiryOptions);
                 }
                 else

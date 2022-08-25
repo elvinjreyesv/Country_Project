@@ -134,6 +134,9 @@ namespace ERV.App.Services
                     .Select(row => row.name.common)
                     .ToList()) ?? Enumerable.Empty<string>().ToList();
 
+                var currency = country.currencies;
+                var languages = country.languages;
+
                 output.Add(new CountryDTO()
                 {
                     Code = country.cca2.CleanSpace(),

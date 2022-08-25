@@ -27,7 +27,7 @@ namespace ERV.Web.Controllers
             try
             {
                 var result = (await ApiClient.GetCountries(InputParameter, AppSettings.SecretKey))
-                    .ToPagedList(page ?? 1, 20);
+                    .ToPagedList(page ?? 1, 21);
 
                 return View(result);
             }

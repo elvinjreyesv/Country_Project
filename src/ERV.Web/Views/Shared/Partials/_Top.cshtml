@@ -13,11 +13,11 @@
                         {
                             if (!string.IsNullOrWhiteSpace(item.Action))
                             {
-                                <li class="breadcrumb-item"><a href="@item.Action">@item.Text</a></li>
+                                <li class="breadcrumb-item"><a href="@item.Action" style="font-size:1rem;">@item.Text</a></li>
                             }
                             else
                             {
-                                <li class="breadcrumb-item active text-white-50" aria-current="page">@item.Text</li>
+                                <li class="breadcrumb-item active text-white-70" style="font-size:1rem;" aria-current="page">@item.Text</li>
                             }
                         }
                     </ol>
