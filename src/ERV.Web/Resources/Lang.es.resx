@@ -186,4 +186,34 @@
   <data name="_English" xml:space="preserve">
  <value>Inglés</value>
 </data>
+  <data name="_MainInformation" xml:space="preserve">
+ <value>Información principal</value>
+</data>
+  <data name="_CapitalCity" xml:space="preserve">
+ <value>Capital</value>
+</data>
+  <data name="_CapitalCities" xml:space="preserve">
+ <value>Capitales</value>
+</data>
+  <data name="_Population" xml:space="preserve">
+ <value>Población</value>
+</data>
+  <data name="_OfficialCurrencies" xml:space="preserve">
+ <value>Monedas oficiales</value>
+</data>
+  <data name="_OfficialCurrency" xml:space="preserve">
+ <value>Moneda oficial</value>
+</data>
+  <data name="_OfficialLanguages" xml:space="preserve">
+ <value>Idiomas oficiales</value>
+</data>
+  <data name="_OfficialLanguage" xml:space="preserve">
+ <value>Idioma oficial</value>
+</data>
+  <data name="_BorderedBy" xml:space="preserve">
+ <value>Hace frontera con</value>
+</data>
+  <data name="_GoBack" xml:space="preserve">
+  <value>Regresar a </value>
+</data>
 </root>

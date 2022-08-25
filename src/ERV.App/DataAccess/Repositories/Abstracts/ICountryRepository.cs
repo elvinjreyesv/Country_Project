@@ -12,6 +12,6 @@ namespace ERV.App.DataAccess.Repositories.Abstracts
         Task<List<Country>> GetCountries();
         Task<Country> GetCountryDetails(string countryCode);
         Task<List<Country>> GetRegionDetails(string region);
-        Task<List<Country>> GetSubRegions(string region);
+        Task<List<Country>> GetSubRegions(string subRegionName);
     }
 }

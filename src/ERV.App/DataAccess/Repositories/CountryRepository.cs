@@ -93,14 +93,14 @@ namespace ERV.App.DataAccess.Repositories
                 return Enumerable.Empty<Country>().ToList();
             }
         }
-        public async Task<List<Country>> GetSubRegions(string region)
+        public async Task<List<Country>> GetSubRegions(string subRegionName)
         {
             try
             {
-                var cacheKey = $"{CacheKeyConstants.SubRegion}_{region}";
+                var cacheKey = $"{CacheKeyConstants.SubRegion}_{subRegionName}";
                 if (!_memoryCache.TryGetValue(cacheKey, out List<Country> subRegionDetails))
                 {
-                    subRegionDetails = await Rest.GetSubRegions(region);
+                    subRegionDetails = await Rest.GetSubRegions(subRegionName);
                     _memoryCache.Set(cacheKey, subRegionDetails, cacheExpiryOptions);
                 }
                 return subRegionDetails;

@@ -12,7 +12,7 @@ namespace ERV.App.Models.ViewModels.Public.Outputs
         public int Population { get; set; }
         public List<CurrencyDTO> Currencies { get; set; }
         public List<LanguageDTO> Languages { get; set; }
-        public List<string> BorderCountries { get; set; }
+        public List<CountryInfoDTO> BorderCountries { get; set; }
     }
 
     public class CurrencyDTO

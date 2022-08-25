@@ -186,4 +186,34 @@
   <data name="_English" xml:space="preserve">
  <value>English</value>
 </data>
+  <data name="_MainInformation" xml:space="preserve">
+ <value>Main Information</value>
+</data>
+  <data name="_CapitalCity" xml:space="preserve">
+ <value>Capital city</value>
+</data>
+  <data name="_CapitalCities" xml:space="preserve">
+ <value>Capital cities</value>
+</data>
+  <data name="_Population" xml:space="preserve">
+ <value>Population</value>
+</data>
+  <data name="_OfficialCurrencies" xml:space="preserve">
+ <value>Official currencies</value>
+</data>
+  <data name="_OfficialCurrency" xml:space="preserve">
+ <value>Official currency</value>
+</data>
+  <data name="_OfficialLanguages" xml:space="preserve">
+ <value>Official languages</value>
+</data>
+  <data name="_OfficialLanguage" xml:space="preserve">
+ <value>Official language</value>
+</data>
+  <data name="_BorderedBy" xml:space="preserve">
+ <value>Bordered by</value>
+</data>
+  <data name="_GoBack" xml:space="preserve">
+  <value>Return to </value>
+</data>
 </root>

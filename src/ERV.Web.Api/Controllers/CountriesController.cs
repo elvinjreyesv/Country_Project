@@ -34,8 +34,16 @@ namespace ERV.Web.Api.Controllers
         [Produces(typeof(AppResponse<EAppResponse, CountryDTO>))]
         public async Task<ActionResult<AppResponse<EAppResponse, CountryDTO>>> Country([FromQuery] CountryInputDTO input)
         {
-            var content = await _countryService.CountryInformation(input.Code);
-            return Ok(content);
+            try
+            {
+                var content = await _countryService.CountryInformation(input.Code);
+                return Ok(content);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet("Region")]

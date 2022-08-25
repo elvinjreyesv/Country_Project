@@ -63,9 +63,16 @@ namespace ERV.App.Services
             try
             {
                 var country = await _countryRepository.GetCountryDetails(countryCode);
-                if(country !=null)
-                    output = (await MapCountriesContent(new List<Country> { country })).FirstOrDefault();
+                var countryList = Enumerable.Empty<Country>().ToList();
 
+                if (country != null)
+                {
+                    if (country.borders != null && country.borders.Any())
+                        countryList = await _countryRepository.GetCountries();
+
+                    output = (await MapCountriesContent(new List<Country> { country }, countryList)).FirstOrDefault();
+                }
+ 
                 return AppResponse.Create(EAppResponse.Success, output);
             }
             catch (Exception ex)
@@ -101,22 +108,24 @@ namespace ERV.App.Services
                 return AppResponse.Create(EAppResponse.UnhandledError, output);
             }
         }
-        public async Task<AppResponse<EAppResponse, SubRegionDTO>> SubRegionInformation(string regionName)
+        public async Task<AppResponse<EAppResponse, SubRegionDTO>> SubRegionInformation(string subRegionName)
         {
             var output = default(SubRegionDTO);
 
-            if (string.IsNullOrWhiteSpace(regionName))
+            if (string.IsNullOrWhiteSpace(subRegionName))
                 return AppResponse.Create(EAppResponse.InvalidInput, output);
 
             try
             {
-                var subRegionDetails = await _countryRepository.GetRegionDetails(regionName);
+                var subRegionDetails = await _countryRepository.GetRegionDetails(subRegionName);
                 if (subRegionDetails != null && subRegionDetails.Any())
                 {
+                    var countryList = await _countryRepository.GetCountries();
                     output = new SubRegionDTO()
                     {
-                        Name = regionName,
-                        Countries = await MapCountriesContent(subRegionDetails),
+                        Name = subRegionName,
+                        Countries = await MapCountriesContent(subRegionDetails, countryList),
+                        RegionName = subRegionDetails?.FirstOrDefault(row=>row !=null)?.region ?? string.Empty
                     };
                 }
 
@@ -130,16 +139,26 @@ namespace ERV.App.Services
         }
 
         #region Helper
-        private async Task<List<CountryDTO>> MapCountriesContent(List<Country> countries)
+        private async Task<List<CountryDTO>> MapCountriesContent(List<Country> countries, List<Country> countriesBorder)
         {
             var output = Enumerable.Empty<CountryDTO>().ToList();
-            var countryList = await _countryRepository.GetCountries();
+            var borders = Enumerable.Empty<CountryInfoDTO>().ToList();
 
             foreach(var country in countries)
             {
-                var borders = (countryList.Where(row => country.borders.Contains(row.cca3))
-                    .Select(row => row.name.common)
-                    .ToList()) ?? Enumerable.Empty<string>().ToList();
+                if(country.borders !=null && country.borders.Any() 
+                    && countriesBorder !=null && countriesBorder.Any())
+                    borders = (countriesBorder.Where(row => country.borders.Contains(row.cca3))
+                    .Select(row => new CountryInfoDTO()
+                    {
+                        Code = row.cca2.CleanSpace(),
+                        Name = row.name.common,
+                        Flag = new Flag()
+                        {
+                            Png = row.flags.png,
+                            Svg = row.flags.svg
+                        }
+                    }).ToList()) ?? Enumerable.Empty<CountryInfoDTO>().ToList();
 
                 output.Add(new CountryDTO()
                 {
@@ -166,13 +185,15 @@ namespace ERV.App.Services
         {
             var output = Enumerable.Empty<SubRegionDTO>().ToList();
             var subRegions = countries.GroupBy(row => row.subregion).ToList();
-            foreach(var item in subRegions)
+            var countryList = await _countryRepository.GetCountries();
+
+            foreach (var item in subRegions)
             {
                 output.Add(new SubRegionDTO()
                 {
                     Name = item.Key,
                     RegionName = item.FirstOrDefault()?.region ?? string.Empty,
-                    Countries = await MapCountriesContent(item.ToList())
+                    Countries = await MapCountriesContent(item.ToList(), countryList)
                 });
             }
 

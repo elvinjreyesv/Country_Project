@@ -248,6 +248,15 @@ p {
     font-size: 2rem;
 }
 
+.feature-image {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 12rem;
+    width: 12rem;
+}
+
+
 .fw-bolder {
     font-weight: bolder !important;
 }

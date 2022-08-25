@@ -18,11 +18,11 @@
             <ul class="country-info">
                 @if (!string.IsNullOrWhiteSpace(Model.Region))
                 {
-                    <li><span>@Lang("_Region"): </span>  <a class="btn btn-link text-decoration-none" asp-controller="Country" asp-action="Region" asp-route-name="@Model.Region">@Model.Region</a></li>
+                    <li><span>@Lang("_Region"): </span>  <a class="btn btn-link text-decoration-none" asp-controller="Region" asp-action="Index" asp-route-name="@Model.Region">@Model.Region</a></li>
                 }
                 @if (!string.IsNullOrWhiteSpace(Model.SubRegion))
                 {
-                    <li><span>@Lang("_SubRegion"): </span> <a class="btn btn-link text-decoration-none" asp-controller="Country" asp-action="SubRegion" asp-route-region="@Model.Region">@Model.SubRegion</a></li>
+                    <li><span>@Lang("_SubRegion"): </span> <a class="btn btn-link text-decoration-none" asp-controller="Region" asp-action="SubRegion" asp-route-region="@Model.Region" asp-route-subregion="@Model.SubRegion">@Model.SubRegion</a></li>
                 }
                 <li class="mt-1">
                     <a class="text-decoration-none text-center" asp-controller="Country" asp-action="Country" asp-route-code="@Model.Code">

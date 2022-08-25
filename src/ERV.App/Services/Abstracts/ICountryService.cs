@@ -14,6 +14,6 @@ namespace ERV.App.Services.Abstracts
         Task<List<CountryInfoDTO>> Countries();
         Task<AppResponse<EAppResponse, CountryDTO>> CountryInformation(string countryCode);
         Task<AppResponse<EAppResponse, RegionDTO>> RegionInformation(string regionName);
-        Task<AppResponse<EAppResponse, SubRegionDTO>> SubRegionInformation(string regionName);
+        Task<AppResponse<EAppResponse, SubRegionDTO>> SubRegionInformation(string subRegionName);
     }
 }
