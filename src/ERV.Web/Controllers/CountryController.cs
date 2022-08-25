@@ -43,7 +43,7 @@ namespace ERV.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(code))
             {
-                TempData.Put(TempDataKeyConstants.ErrorMessage, "There is no country selected to continue!");
+                TempData.Put(TempDataKeyConstants.ErrorMessage, Lang("_NoCountrySelected"));
                 return View(new CountryDTO());
             }
 
@@ -57,7 +57,7 @@ namespace ERV.Web.Controllers
 
                 var result = await ApiClient.GetCountry(input, AppSettings.SecretKey);
                 if (result.Status != EAppResponse.Success)
-                    TempData.Put(TempDataKeyConstants.ErrorMessage, "There are no results for the current search!");
+                    TempData.Put(TempDataKeyConstants.ErrorMessage, Lang("_NoResults"));
 
                 return View(result.Result);
             }
@@ -72,7 +72,7 @@ namespace ERV.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                TempData.Put(TempDataKeyConstants.ErrorMessage, "There is no region selected to continue!");
+                TempData.Put(TempDataKeyConstants.ErrorMessage, Lang("_NoRegion"));
                 return View(new RegionDTO());
             }
 
@@ -87,7 +87,7 @@ namespace ERV.Web.Controllers
                 var result = await ApiClient.GetRegion(input, AppSettings.SecretKey);
 
                 if (result.Status != EAppResponse.Success)
-                    TempData.Put(TempDataKeyConstants.ErrorMessage, "There are no results for the current search!");
+                    TempData.Put(TempDataKeyConstants.ErrorMessage, Lang("_NoResults"));
 
                 return View(result.Result);
             }
@@ -102,7 +102,7 @@ namespace ERV.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(region))
             {
-                TempData.Put(TempDataKeyConstants.ErrorMessage, "There is no region selected to continue!");
+                TempData.Put(TempDataKeyConstants.ErrorMessage, Lang("_NoRegion"));
                 return View(new SubRegionDTO());
             }
 
@@ -116,7 +116,7 @@ namespace ERV.Web.Controllers
 
                 var result = await ApiClient.GetSubRegion(input, AppSettings.SecretKey);
                 if (result.Status != EAppResponse.Success)
-                    TempData.Put(TempDataKeyConstants.ErrorMessage, "There are no results for the current search!");
+                    TempData.Put(TempDataKeyConstants.ErrorMessage, Lang("_NoResults"));
 
                 return View(result.Result);
             }

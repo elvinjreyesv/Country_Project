@@ -1,8 +1,8 @@
 ﻿@model List<CountryInfoDTO>
 @{
-    var toHeader = new TopHeaderDTO()
+    var topHeader = new TopHeaderDTO()
     {
-        AdditionalText = "Countries",
+        AdditionalText = Lang("_Countries"),
         Image = string.Concat(settings.Value.BaseUrl, "images/top/continent.jpg"),
         BreadCrumb = new List<BreadCrumbDTO>()
         {
@@ -15,14 +15,14 @@
             new BreadCrumbDTO()
             {
                 Action = string.Empty,
-                Text = "Countries",
+                Text = Lang("_Countries"),
                 Order = 2,
             }
         }
     };
 }
 
-@await Html.PartialAsync("~/Views/Shared/Partials/_Top.cshtml", toHeader)
+@await Html.PartialAsync("~/Views/Shared/Partials/_Top.cshtml", topHeader)
 
 <section class="border-bottom mt-2">
     <div class="container">
@@ -31,7 +31,7 @@
             <div class="row mb-1 align-items-center header-text mb-3">
                 <div class="col-sm-12">
                     <h3 class="font-weight-bold heading">
-                        Country List
+                        @Lang("_CountryList")
                     </h3>
                 </div>
             </div>

@@ -50,17 +50,17 @@
                     window.open(data.targetUrl.url, data.targetUrl.external ? '_blank' : '_self');
                     return;
                 }
-                TourismApp.Message.Close();
+                countryApp.Message.Close();
                 if (data.success && successCallback instanceof Function)
                     successCallback(data);
                 else if (!data.success && errorCallback instanceof Function)
                     errorCallback(data);
             } else {
-                TourismApp.Message.Close();
+                countryApp.Message.Close();
             }
         };
         let failProcess = function (data, errorCallback) {
-            TourismApp.Message.Close();
+            countryApp.Message.Close();
             isRequesting = false;
 
             if (data && errorCallback instanceof Function) {
@@ -77,7 +77,7 @@
                 url: url,
                 beforeSend: function (request) {
                     isRequesting = true;
-                    TourismApp.Message.Loading();
+                    countryApp.Message.Loading();
 
                     if (token)
                         request.setRequestHeader("RequestVerificationToken", token.val());
@@ -97,7 +97,7 @@
                 type: 'POST',
                 url: url,
                 beforeSend: function (request) {
-                    TourismApp.Message.Loading();
+                    countryApp.Message.Loading();
                     isRequesting = true;
                     if (token)
                         request.setRequestHeader("RequestVerificationToken", token.val());
@@ -141,7 +141,7 @@
 
             Swal.fire({
                 title: modalTitle,
-                imageUrl: TourismApp.Constants.BaseUrl + imageUrl,
+                imageUrl: countryApp.Constants.BaseUrl + imageUrl,
                 html: modalMessage,
                 width: width,
                 onOpen: () => {

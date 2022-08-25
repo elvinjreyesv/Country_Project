@@ -133,6 +133,57 @@
 <value>La página a la que intenta acceder no se encuentra disponible. Por favor contacte el administrador al correo elvinjreyesv@outlok.com</value>
 </data> 
 <data name="_Global_ServerError_ReferenceCode" xml:space="preserve">
-<value>Reference Code</value>
+<value>Código de Referencia</value>
+</data>
+  <data name="_Prev" xml:space="preserve">
+  <value>Ant</value>
+</data>
+  <data name="_Next" xml:space="preserve">
+<value>Sig</value>
+</data>
+  <data name="_CopyRight" xml:space="preserve">
+  <value>Derechos de autor</value>
+</data>
+  <data name="_RightsReserved" xml:space="preserve">
+  <value>Todos los derechos reservados</value>
+</data>
+  <data name="_Countries" xml:space="preserve">
+    <value>Países</value>
+  </data>
+  <data name="_Country" xml:space="preserve">
+   <value>País</value>
+ </data>
+  <data name="_CountryList" xml:space="preserve">
+   <value>Lista de Países</value>
+ </data>
+  <data name="_AllCountries" xml:space="preserve">
+    <value>Todos los países</value>
+  </data>
+  <data name="_Region" xml:space="preserve">
+ <value>Región</value>
+</data>
+<data name="_SubRegion" xml:space="preserve">
+ <value>SubRegión</value>
+</data>
+  <data name="_ViewCountry" xml:space="preserve">
+<value>Info del país</value>
+</data>
+  <data name="_ViewAllCountries" xml:space="preserve">
+<value>Todos los países</value>
+</data>
+  <data name="_NoCountrySelected" xml:space="preserve">
+ <value>Seleccione un país para continuar.</value>
+</data>
+  <data name="_NoResults" xml:space="preserve">
+ <value>No hay resultados para la búsqueda actual.</value>
+</data>
+  <data name="_NoRegion" xml:space="preserve">
+ <value>Seleccione una región para continuar.</value>
+</data>
+  <data name="_Spanish" xml:space="preserve">
+ <value>Español</value>
+</data>
+  <data name="_English" xml:space="preserve">
+ <value>Inglés</value>
 </data>
 </root>

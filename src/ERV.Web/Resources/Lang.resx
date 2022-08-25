@@ -135,4 +135,55 @@
   <data name="_Global_ServerError" xml:space="preserve">
 <value>An error has occurred processing your request. Please try again later, or contact the administrator at elvinjreyesv@outlok.com.</value>
 </data>
+  <data name="_Prev" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="_CopyRight" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="_RightsReserved" xml:space="preserve">
+    <value>All rights reserved</value>
+  </data> 
+  <data name="_Countries" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="_AllCountries" xml:space="preserve">
+    <value>All Countries</value>
+  </data>
+  <data name="_Country" xml:space="preserve">
+   <value>Country</value>
+ </data>
+  <data name="_CountryList" xml:space="preserve">
+   <value>Country List</value>
+ </data> 
+   <data name="_Region" xml:space="preserve">
+   <value>Region</value>
+ </data>
+  <data name="_SubRegion" xml:space="preserve">
+   <value>SubRegion</value>
+ </data>
+  <data name="_ViewCountry" xml:space="preserve">
+ <value>View country Info</value>
+</data> 
+  <data name="_ViewAllCountries" xml:space="preserve">
+ <value>View All Countries</value>
+</data> 
+  <data name="_NoCountrySelected" xml:space="preserve">
+ <value>There is no country selected to continue!</value>
+</data> 
+  <data name="_NoResults" xml:space="preserve">
+ <value>There are no results for the current search!</value>
+</data> 
+  <data name="_NoRegion" xml:space="preserve">
+ <value>There is no region selected to continue!</value>
+</data>  
+  <data name="_Spanish" xml:space="preserve">
+ <value>Spanish</value>
+</data>  
+  <data name="_English" xml:space="preserve">
+ <value>English</value>
+</data>
 </root>

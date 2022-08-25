@@ -3,26 +3,30 @@
 @{
     ViewData["Title"] = ViewBag.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+     var topHeader = new TopHeaderDTO()
+     {
+         AdditionalText = Lang("_ErrorPage"),
+         Image = string.Concat(settings.Value.BaseUrl, "images/Home/top/error.jpg"),
+         BreadCrumb = new List<BreadCrumbDTO>()
+         {
+            new BreadCrumbDTO()
+            {
+                Action = Url.Action("Index", "Home"),
+                Text = Lang("_Home"),
+                Order = 1
+            },
+            new BreadCrumbDTO()
+            {
+               Action = string.Empty,
+               Text = "Error",
+               Order = 2,
+            }
+         }
+     };
 }
 
-<div class="hero page-inner overlay" style="background-image: url('@string.Concat(settings.Value.BaseUrl, "images/Home/top/error.jpg")')">
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-9 text-center mt-5">
-                <h1 class="heading" data-aos="fade-up">
-                    @Lang("_ErrorPage")
-                </h1>
-
-                <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
-                    <ol class="breadcrumb text-center justify-content-center">
-                        <li class="breadcrumb-item"><a href="index.html">@Lang("_Home")</a></li>
-                        <li class="breadcrumb-item" style="color:#fff;">Error</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
+@await Html.PartialAsync("~/Views/Shared/Partials/_Top.cshtml", topHeader)
 
 <div class="section">
     <div class="container">
