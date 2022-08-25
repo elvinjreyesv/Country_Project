@@ -1,23 +1,23 @@
 ﻿@model CountryDTO
 @{
     var topHeader = new TopHeaderDTO()
-            {
-                AdditionalText = Model.Name,
-                Image = string.Concat(settings.Value.BaseUrl, "images/top/continent.jpg"),
-                BreadCrumb = new List<BreadCrumbDTO>()
+    {
+        AdditionalText = Model.Name,
+        Image = string.Concat(settings.Value.BaseUrl, "images/top/continent.jpg"),
+        BreadCrumb = new List<BreadCrumbDTO>()
         {
-             new BreadCrumbDTO()
-             {
-                 Action = Url.Action("Index", "Home"),
-                 Text = Lang("_Home"),
-                 Order = 1
-             },
-             new BreadCrumbDTO()
-             {
-                 Action = Url.Action("Index", "Country"),
-                 Text = Lang("_Countries"),
-                 Order = 2
-             },
+                new BreadCrumbDTO()
+                {
+                    Action = Url.Action("Index", "Home"),
+                    Text = Lang("_Home"),
+                    Order = 1
+                },
+                new BreadCrumbDTO()
+                {
+                    Action = Url.Action("Index", "Country"),
+                    Text = Lang("_Countries"),
+                    Order = 2
+                },
             new BreadCrumbDTO()
             {
                 Action = string.Empty,
@@ -25,7 +25,7 @@
                 Order = 3,
             }
         }
-            };
+    };
 }
 
 @await Html.PartialAsync("~/Views/Shared/Partials/_Top.cshtml", topHeader)
@@ -34,7 +34,7 @@
     <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
             <div class="feature-image flex-shrink-0 text-white rounded-3">
-                <img class="img-fluid rounded mx-auto d-block" src="@Model.Flag.Png" />
+                <img class="img-fluid rounded mx-auto d-block" src="@Model?.Flag?.Png" />
             </div>
             <h2 class="fw-bolder">@Model.Name</h2>
             <p class="lead mb-0">@Lang("_MainInformation")</p>
@@ -45,24 +45,27 @@
                     <div class="card-body p-4">
                         <div class="d-flex">
                             <div class="ms-4">
-                                <p class="mb-1">
-                                    <span class="fw-bold">
-                                        @if (Model.CapitalCities.Count > 1)
-                                        {
-                                            @Lang("_CapitalCities")
-                                        }
-                                        else
-                                        {
-                                            @Lang("_CapitalCity")
-                                        }:
-                                    </span>
-                                    <ul>
-                                        @foreach (var item in Model.CapitalCities)
-                                        {
-                                            <li>@item</li>
-                                        }
-                                    </ul>
-                                </p>
+                                @if(Model.CapitalCities !=null && Model.CapitalCities.Any())
+                                {
+                                    <p class="mb-1">
+                                        <span class="fw-bold">
+                                            @if (Model.CapitalCities.Count > 1)
+                                            {
+                                                @Lang("_CapitalCities")
+                                            }
+                                            else
+                                            {
+                                                @Lang("_CapitalCity")
+                                            }:
+                                        </span>
+                                        <ul>
+                                            @foreach (var item in Model.CapitalCities)
+                                            {
+                                                <li>@item</li>
+                                            }
+                                        </ul>
+                                    </p>
+                                }
                                 <p class="mb-1"><span class="fw-bold">@Lang("_Population"): </span><span>@String.Format("{0:n0}", @Model.Population)</span></p>
                             </div>
                         </div>

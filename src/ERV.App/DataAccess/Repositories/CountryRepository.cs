@@ -59,14 +59,12 @@ namespace ERV.App.DataAccess.Repositories
                 var country = new Country();
                 var cacheKey = $"{CacheKeyConstants.Country}_{countryCode}";
 
-                if (!_memoryCache.TryGetValue(CacheKeyConstants.Countries, out List<Country> countries)
+                if (!_memoryCache.TryGetValue(cacheKey, out country)
                     && !_memoryCache.TryGetValue(cacheKey, out country))
                 {
-                    country = (await Rest.GetCountryDetails(countryCode)).FirstOrDefault();
+                    country = (await Rest.GetCountryDetails(countryCode))?.FirstOrDefault();
                     _memoryCache.Set(cacheKey, country, cacheExpiryOptions);
                 }
-                else
-                    country = countries.FirstOrDefault(row => row != null && row.cca2 == countryCode);
                     
                 return country;
             }

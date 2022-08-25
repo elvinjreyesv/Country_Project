@@ -35,7 +35,7 @@
     <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
             <h2 class="fw-bolder">@Model.Name</h2>
-            <p class="mb-1"><span class="fw-bold">@Lang("_Region"): </span><span>@Model.RegionName</span></p>
+            <p class="mb-1"><span class="fw-bold">@Lang("_Region"): </span><span><a asp-controller="Region" asp-action="Index" asp-route-name="@Model.RegionName" class="btn btn-link text-decoration-none">@Model.RegionName</a></span></p>
             <p class="mb-1"><span class="fw-bold">@Lang("_Population"): </span><span>@String.Format("{0:n0}", Model.TotalPopulation)</span></p>
         </div>
         <div class="row gx-5 justify-content-center">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body p-4">
-                            <div class="d-flex">
+                            <div class="d-flex justify-content-center">
                                 <div class="ms-4">
                                     <div class="mb-1">
                                         <div class="row">
