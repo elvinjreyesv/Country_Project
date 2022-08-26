@@ -21,7 +21,9 @@
 <body>
     @await Html.PartialAsync("~/Views/Shared/Partials/_Nav.cshtml")
 
-    @RenderBody()
+    <div id="app">
+        @RenderBody()
+    </div>
 
     @await Html.PartialAsync("~/Views/Shared/Partials/_Footer.cshtml")
 
@@ -34,13 +36,17 @@
 
     <form id="__AjaxForm">@Html.AntiForgeryToken()</form>
     <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
-        <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validate/jquery.validate.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
-        <script src="~/lib/vue/vue.global.min.js" asp-append-version="true"></script>
-        <script src="~/lib/chosen/chosen.jquery.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+        <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.37/vue.global.min.js" integrity="sha512-rCO3ZZnxh9j/Y725Iq2Cqr2lc9fi83zVeN3PFTUosktylZsCFjD13PDbKrzKjKO/idjM4KlMQC52AsoGFTAe6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.0/vue.min.js" 
+            integrity="sha512-ZjkdNWvVA3C4ZhiL2HoYnUVHB0cLCJwQl/YU5IXgmVSGSsLhpBg5rAIiltBeEpjjNcmxb2F4nePSh1O91J0FCg==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>*@
+        <script src="~/lib/chosen/chosen.jquery.min.js"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
     @Html.RenderPartialViewScripts()

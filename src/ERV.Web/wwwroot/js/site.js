@@ -1,4 +1,7 @@
 ﻿var countryApp = countryApp || {
+    Data:{
+        Countries: null
+    },
     Resources: {
         Language: document.cookie.indexOf("CurrentLanguage=ES") !== -1 ? "ES" : "EN",
         Get: new function (key) {
@@ -159,7 +162,7 @@
     }
 };
 
-$(function () {
+(function () {
     var showloader = function () {
 
         var loader = document.querySelector('.loader');
@@ -182,7 +185,20 @@ $(function () {
         }, 200);
     };
     showloader();
-});
+})();
+
+function createVueInstance(countryList)
+{
+    const app = Vue.createApp({
+        data() {
+            return {
+                countries: JSON.parse(countryList)
+            }
+        }
+    });
+
+    app.mount("#app");
+}
 
 $(document).on('click', '.loading', function () {
     countryApp.Message.Loading();

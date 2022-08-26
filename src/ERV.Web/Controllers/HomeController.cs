@@ -22,13 +22,12 @@ namespace ERV.Web.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index()
         {
             try
             {
-                var result = (await ApiClient.GetCountries(InputParameter, AppSettings.SecretKey))
-                    .ToPagedList(page ?? 1, 21);
-
+                var result = await ApiClient.GetCountries(InputParameter, AppSettings.SecretKey);
+               
                 return View(result);
             }
             catch (Exception ex)
@@ -40,7 +39,6 @@ namespace ERV.Web.Controllers
         [HttpPost]
         public IActionResult ChangeLanguage(string returnUrl, string newLang)
         {
-            //returnUrl = returnUrl.Replace("&amp;", "&");
             if (string.IsNullOrWhiteSpace(newLang) || newLang == CultureTwoLetterName)
                 return Json(AppResponseAjax.CreateTarget(returnUrl, false));
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace ERV.Web.Utils.Extensions
 {
@@ -10,6 +11,7 @@ namespace ERV.Web.Utils.Extensions
             htmlHelper.ViewContext.HttpContext.Items["_script_" + Guid.NewGuid()] = template;
             return string.Empty;
         }
+
         public static string RenderPartialViewScripts(this IHtmlHelper htmlHelper)
         {
             foreach (object key in htmlHelper.ViewContext.HttpContext.Items.Keys)

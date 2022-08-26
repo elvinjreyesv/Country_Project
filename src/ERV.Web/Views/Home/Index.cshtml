@@ -1,4 +1,5 @@
-﻿@model IPagedList<CountryInfoDTO>
+﻿@model List<CountryInfoDTO>
+@*@model IPagedList<CountryInfoDTO>*@
 @{
     var topHeader = new TopHeaderDTO()
     {
@@ -14,13 +15,17 @@
             }
         }
     };
+
+    var countries = Html.Raw(Json.Serialize(Model));
+
+    //let friendList = '@Html.Raw(Json.Serialize(Model.FriendList))';
 }
 
 @await Html.PartialAsync("~/Views/Shared/Partials/_Top.cshtml", topHeader)
 
 <section class="border-bottom mt-2">
     <div class="container">
-        @if (Model.ToList() != null && Model.Count > 0)
+        @if (Model != null && Model.Count > 0)
         {
             <div class="row mb-1 align-items-center header-text mb-3">
                 <div class="col-lg-6 col-sm-6">
@@ -35,28 +40,16 @@
                 </div>
             </div>
             <div class="row gx-5 justify-content-between content-row">
-                @foreach (var item in Model)
-                {
-                    item.Index = Model.ToList().IndexOf(item) + 1;
-                    @await Html.PartialAsync("~/Views/Country/Partials/_Country.cshtml", item)
-                }
-            </div>
-            <div class="row">
-                <div class="col-sm-12 mt-2 d-flex justify-content-center">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { page = page }),
-                    new PagedListRenderOptions {
-                        ActiveLiElementClass = "active",
-                        PageClasses = new[]{ "page-link"},
-                        LiElementClasses=new[] { "page-item" },
-                        UlElementClasses = new[] { "pagination","justify-content-center", "mt-3" },
-                        LinkToNextPageFormat = Lang("_Next"),
-                        LinkToPreviousPageFormat = Lang("_Prev"),
-                        MaximumPageNumbersToDisplay = 3,
-                        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                        DisplayLinkToNextPage = PagedListDisplayMode.Always
-                })
-                </div>
+                 @await Html.PartialAsync("~/Views/Country/Partials/_Country.cshtml")
             </div>
         }
     </div>
 </section>
+
+@section Scripts{
+    <script>
+        (function() {
+            createVueInstance('@countries');
+        })();
+    </script>
+}
