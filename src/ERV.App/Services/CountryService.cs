@@ -23,34 +23,21 @@ namespace ERV.App.Services
         {
             _countryRepository = countryRepository;
         }
-        public async Task<List<CountryInfoDTO>> Countries()
+        public async Task<List<CountryDTO>> Countries()
         {
             try
             {
-                var output = Enumerable.Empty<CountryInfoDTO>().ToList();
+                var output = Enumerable.Empty<CountryDTO>().ToList();
                 var countries = await _countryRepository.GetCountries();
 
                 if(countries !=null && countries.Any())
-                {
-                    output = countries.Select(row => new CountryInfoDTO()
-                    {
-                        Code = row.cca2.CleanSpace(),
-                        Name = row.name.common,
-                        Flag = new Flag()
-                        {
-                            Png = row.flags.png,
-                            Svg = row.flags.svg
-                        },
-                        Region = row.region,
-                        SubRegion = row.subregion
-                    }).OrderBy(row=>row.Name).ToList();
-                }
+                    output = await MapCountriesContent(countries);
 
                 return output;
             }
             catch (Exception ex)
             {
-                return Enumerable.Empty<CountryInfoDTO>().ToList();
+                return Enumerable.Empty<CountryDTO>().ToList();
             }
         }
         public async Task<AppResponse<EAppResponse, CountryDTO>> CountryInformation(string countryCode)
@@ -139,12 +126,15 @@ namespace ERV.App.Services
         }
 
         #region Helper
-        private async Task<List<CountryDTO>> MapCountriesContent(List<Country> countries, List<Country> countriesBorder)
+        private async Task<List<CountryDTO>> MapCountriesContent(List<Country> countries, List<Country> countriesBorder=null)
         {
             var output = Enumerable.Empty<CountryDTO>().ToList();
             var borders = Enumerable.Empty<CountryInfoDTO>().ToList();
 
-            foreach(var country in countries)
+            if (countriesBorder == null)
+                countriesBorder = countries;
+
+            foreach (var country in countries)
             {
                 if(country.borders !=null && country.borders.Any() 
                     && countriesBorder !=null && countriesBorder.Any())
@@ -177,6 +167,7 @@ namespace ERV.App.Services
                     Currencies = MapCurrencies(country.currencies),
                     Languages = MapLanguages(country.languages)
                 });
+                borders = Enumerable.Empty<CountryInfoDTO>().ToList();
             }
            
             return output.OrderBy(row => row.Name).ToList();

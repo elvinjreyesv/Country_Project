@@ -23,8 +23,8 @@ namespace ERV.Web.Api.Controllers
         }
 
         [HttpGet]
-        [Produces(typeof(List<CountryInfoDTO>))]
-        public async Task<ActionResult<List<CountryInfoDTO>>> Get([FromQuery] ClientInputDTO dto)
+        [Produces(typeof(List<CountryDTO>))]
+        public async Task<ActionResult<List<CountryDTO>>> Get([FromQuery] ClientInputDTO dto)
         {
             var content = await _countryService.Countries();
             return Ok(content);

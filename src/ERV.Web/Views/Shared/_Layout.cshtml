@@ -42,8 +42,9 @@
         <script src="~/lib/vue/vue.global.min.js"></script>
         <script src="https://unpkg.com/vuejs-paginate-next@1.0.2/dist/vuejs-paginate-next.umd.js"></script>
         <script src="~/lib/chosen/chosen.jquery.min.js"></script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
+
     @Html.RenderPartialViewScripts()
     @await RenderSectionAsync("Scripts", required: false)
 </body>

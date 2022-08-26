@@ -1,0 +1,68 @@
+﻿
+<div class="modal fade" id="regionDetailModal" role="dialog" tabindex="-1" aria-labelledby="regionDetailModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="overflow-y: initial !important">
+        <div class="modal-content" v-if="details.region.countries !=null">
+            <div class="modal-header">
+                <h5 class="modal-title" id="regionLabel">@Lang("_Region"): {{details.region.name}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="height: 80vh; overflow-y: auto;">
+                <div class="container px-5 my-5 px-5">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bolder">{{details.region.name}}</h2>
+                        <p class="mb-1"><span class="fw-bold">@Lang("_Population"): </span><span>{{details.region.population.toLocaleString('en-US')}}</span></p>
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-12 col-sm-12 mb-2" v-show="details.region.subRegions.length > 0">
+                            <div class="card">
+                                <div class="card-body p-4">
+                                    <div class="mb-1">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h4 class="fw-bold mb-2">
+                                                    @string.Concat(Lang("_SubRegion"), "s"):
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <ul style="margin-left: 1rem;">
+                                                <li v-for="item in details.region.subRegions">
+                                                    <a class="text-decoration-none" data-bs-dismiss="modal" v-on:click="subregionDetails(item)" style="cursor:pointer;">
+                                                        <div> <span class="text-center">{{item}}</span></div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-body p-4">
+                                    <div class="mb-1">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h4 class="fw-bold mb-2">
+                                                    @Lang("_Countries"):
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-lg-4 mb-4" v-for="item in details.region.countries">
+                                                <a class="text-decoration-none" data-bs-dismiss="modal" v-on:click="countryDetails(item.code)" style="cursor:pointer;">
+                                                    <img class="img-fluid rounded" :src="item.flag.png" style="width:7rem;" />
+                                                    <div> <span class="text-center">{{item.name}}</span></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

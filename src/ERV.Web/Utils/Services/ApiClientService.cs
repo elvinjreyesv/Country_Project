@@ -21,7 +21,7 @@ namespace ERV.Web.Utils.Services
         public IApiMethods Rest => RestService.For<IApiMethods>(_appSettings.WebApiBaseUrl);
 
         #region Content
-        public async Task<List<CountryInfoDTO>> GetCountries(ClientInputDTO dto, string secretKey)
+        public async Task<List<CountryDTO>> GetCountries(ClientInputDTO dto, string secretKey)
         {
             dto.Token = TokenEncrypter.Encrypt(dto, secretKey);
             return await Rest.GetCountries(dto.Id, dto.Token);

@@ -12,7 +12,7 @@ namespace ERV.App.Infrastructure.Utils.RefitInterfaces
     public interface IApiMethods
     {
         [Get("/api/v1/Countries/?Id={id}&Token={token}")]
-        Task<List<CountryInfoDTO>> GetCountries(string id, string token);
+        Task<List<CountryDTO>> GetCountries(string id, string token);
 
         [Get("/api/v1/Countries/Country?Code={countryCode}&Id={id}&Token={token}")]
         Task<AppResponse<EAppResponse, CountryDTO>> GetCountry(string countryCode, string id, string token);

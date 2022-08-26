@@ -1,0 +1,96 @@
+﻿
+<div class="modal fade" id="countryDetailModal" role="dialog" tabindex="-1" aria-labelledby="countryDetailModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="overflow-y: initial !important">
+        <div class="modal-content"v-if="details.country !=null">
+            <div class="modal-header">
+                <h5 class="modal-title" id="countryLabel">@Lang("_Country"): {{details.country.name}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="height: 80vh; overflow-y: auto;">
+                <div class="container px-5">
+                    <div class="text-center mb-4">
+                        <div class="flex-shrink-0 text-white rounded-3">
+                            <img class="img-fluid rounded mx-auto d-block" :src="details.country.flag.png" />
+                        </div>
+                        <h2 class="fw-bolder">{{details.country.name}}</h2>
+                        <p class="mb-1"><span class="fw-bold">@Lang("_Population"): </span><span>{{details.country.population.toLocaleString('en-US')}}</span></p>
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-sm-12">
+                            <div class="card mb-2">
+                                <div class="card-body p-4">
+                                    <div class="d-flex">
+                                        <div class="ms-4">
+                                            <p class="mb-1" v-show="details.country.capitalCities.length > 0">
+                                                <span class="fw-bold">
+                                                    <span v-if="details.country.capitalCities.length > 1">
+                                                        @Lang("_CapitalCities"):
+                                                    </span>
+                                                    <span v-else>
+                                                        @Lang("_CapitalCity"):
+                                                    </span>
+                                                </span>
+                                                <ul>
+                                                    <li v-for="item in details.country.capitalCities">{{item}}</li>
+                                                </ul>
+                                            </p>
+                                            <p class="mb-1" v-show="details.country.languages.length > 0">
+                                                <span class="fw-bold">
+                                                    <span v-if="details.country.languages.length > 1">
+                                                        @Lang("_OfficialLanguages"):
+                                                    </span>
+                                                    <span v-else>
+                                                        @Lang("_OfficialLanguage"):
+                                                    </span>
+                                                </span>
+                                                <ul>
+                                                    <li v-for="item in details.country.languages">{{item.name}} ({{item.code}})</li>
+                                                </ul>
+                                            </p>
+                                            <p class="mb-1" v-show="details.country.currencies.length > 0">
+                                                <span class="fw-bold">
+                                                    <span v-if="details.country.currencies.length > 1">
+                                                        @Lang("_OfficialCurrencies"):
+                                                    </span>
+                                                    <span v-else>
+                                                        @Lang("_OfficialCurrency"):
+                                                    </span>
+                                                </span>
+                                                <ul>
+                                                    <li v-for="item in details.country.currencies">{{item.code}} - {{item.name}} ({{item.symbol}})</li>
+                                                </ul>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="card" v-show="details.country.borderCountries.length > 0">
+                                <div class="card-body p-4">
+                                    <div class="mb-1">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h4 class="fw-bold mb-2">
+                                                    @Lang("_BorderedBy"):
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-lg-4 mb-4" v-for="item in details.country.borderCountries">
+                                                <a class="text-decoration-none" v-on:click="countryDetails(item.code)" style="cursor:pointer;">
+                                                    <img class="img-fluid rounded" :src="item.flag.png" style="width:7rem;" />
+                                                    <div> <span class="text-center">{{item.name}}</span></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,10 +11,20 @@
         </div>
         <div class="col-sm-12">
             <ul class="country-info">
-                <li v-if="country.region !='' && country.region !=null"><span>@Lang("_Region"): </span>  <a class="btn btn-link text-decoration-none" :href="'@settings.Value.BaseUrl' + 'Region/' + country.region">{{country.region}}</a></li>
-                <li v-if="country.subRegion !='' && country.subRegion !=null"><span>@Lang("_SubRegion"): </span> <a class="btn btn-link text-decoration-none" :href="'@settings.Value.BaseUrl' + 'Region/' + country.region + '/' + 'SubRegion/' + country.subRegion">{{country.subRegion}}</a></li>
+                <li v-if="country.region !='' && country.region !=null">
+                    <span>@Lang("_Region"): </span>
+                    <a class="btn btn-link text-decoration-none" v-on:click="regionDetails(country.region)" style="cursor:pointer;">
+                        {{country.region}}
+                    </a>
+                </li>
+                <li v-if="country.subRegion !='' && country.subRegion !=null">
+                    <span>@Lang("_SubRegion"): </span>
+                    <a class="btn btn-link text-decoration-none" v-on:click="subregionDetails(country.subRegion)" style="cursor:pointer;">
+                        {{country.subRegion}}
+                    </a>
+                </li>
                 <li class="mt-1">
-                    <a class="text-decoration-none text-center" :href="'@settings.Value.BaseUrl' + 'Country/' + country.code">
+                    <a class="text-decoration-none text-center" v-on:click="countryDetails(country.code)" style="cursor:pointer;">
                         @Lang("_ViewCountry")
                     </a>
                 </li>

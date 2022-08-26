@@ -1,4 +1,4 @@
-﻿@model List<CountryInfoDTO>
+﻿@model List<CountryDTO>
 
 @{
     var topHeader = new TopHeaderDTO()
@@ -28,6 +28,10 @@
         }
     </div>
 </section>
+
+@await Html.PartialAsync("~/Views/Country/Partials/_CountryDetail.cshtml")
+@await Html.PartialAsync("~/Views/Region/Partials/_RegionDetail.cshtml")
+@await Html.PartialAsync("~/Views/Region/Partials/_SubRegionDetail.cshtml")
 
 @section Scripts{
     <script>
