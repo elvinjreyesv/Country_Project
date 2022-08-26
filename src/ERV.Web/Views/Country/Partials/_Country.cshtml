@@ -3,11 +3,15 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="feature text-white rounded-3">
-                <img class="img-fluid rounded mx-auto d-block" :src="country.flag.png" />
+                <a class="text-decoration-none" v-on:click="countryDetails(country.code)" style="cursor:pointer;">
+                    <img class="img-fluid rounded mx-auto d-block" :src="country.flag.png" />
+                </a>
             </div>
         </div>
         <div class="col-sm-8">
-            <h5 class="fw-bolder mt-3">{{country.name}}</h5>
+            <a class="text-decoration-none" v-on:click="countryDetails(country.code)" style="cursor:pointer;">
+                <h5 class="fw-bolder mt-3 text-dark">{{country.name}}</h5>
+            </a>
         </div>
         <div class="col-sm-12">
             <ul class="country-info">

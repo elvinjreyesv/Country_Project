@@ -12,8 +12,6 @@ builder.Services.AddControllersWithViews()
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.Configure<HtmlHelperOptions>(o => o.ClientValidationEnabled = true);
-
 builder.Services.AddOptions();
 builder.Services.Configure<WebAppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddScoped<IApiClientService, ApiClientService>();
