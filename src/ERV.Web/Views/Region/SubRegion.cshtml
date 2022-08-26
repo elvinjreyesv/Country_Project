@@ -4,28 +4,7 @@
     var topHeader = new TopHeaderDTO()
     {
         AdditionalText = Model.Name,
-        Image = string.Concat(settings.Value.BaseUrl, "images/top/continent.jpg"),
-        BreadCrumb = new List<BreadCrumbDTO>()
-        {
-            new BreadCrumbDTO()
-            {
-                Action = Url.Action("Index", "Home"),
-                Text = Lang("_Home"),
-                Order = 1
-            },
-            new BreadCrumbDTO()
-            {
-                Action = Url.Action("Index", "Region"),
-                Text = Model.RegionName,
-                Order = 2
-            },
-            new BreadCrumbDTO()
-            {
-                Action = string.Empty,
-                Text = Lang("_SubRegion"),
-                Order = 3,
-            }
-        }
+        Image = string.Concat(settings.Value.BaseUrl, "images/top/continent.jpg")
     };
 }
 

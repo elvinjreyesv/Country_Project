@@ -7,22 +7,7 @@
      var topHeader = new TopHeaderDTO()
      {
          AdditionalText = Lang("_ErrorPage"),
-         Image = string.Concat(settings.Value.BaseUrl, "images/Home/top/error.jpg"),
-         BreadCrumb = new List<BreadCrumbDTO>()
-         {
-            new BreadCrumbDTO()
-            {
-                Action = Url.Action("Index", "Home"),
-                Text = Lang("_Home"),
-                Order = 1
-            },
-            new BreadCrumbDTO()
-            {
-               Action = string.Empty,
-               Text = "Error",
-               Order = 2,
-            }
-         }
+         Image = string.Concat(settings.Value.BaseUrl, "images/Home/top/error.jpg")
      };
 }
 

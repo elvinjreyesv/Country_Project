@@ -2,7 +2,7 @@
   {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/js/*.js"
+      "wwwroot/js/site.js"
     ]
   },
   {

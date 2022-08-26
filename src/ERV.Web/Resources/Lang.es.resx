@@ -216,4 +216,7 @@
   <data name="_GoBack" xml:space="preserve">
   <value>Regresar a </value>
 </data>
+  <data name="_CountrySearch" xml:space="preserve">
+  <value>Buscar... </value>
+</data>
 </root>

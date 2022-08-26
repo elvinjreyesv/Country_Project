@@ -193,19 +193,21 @@ function createVueInstance(countryList)
         data() {
             return {
                 countries: JSON.parse(countryList),
-                countriesPaginated: null,
+                filteredCountries:null,
                 region: null,
                 subRegion: null,
                 pagination: {
+                    countryCount: 0,
                     itemsPerPage: 21,
                     pageRange: 2,
                     marginPages: 1,
                     currentPage: 1
-                }
+                },
+                search: ''
             }
         },
         mounted: function () {
-            this.pagination.pageCount = Math.ceil(this.countries.length / 21);
+            this.filteredCountries = this.countries;
         },
         methods: {
             countryDetails:function (code) {
@@ -227,14 +229,30 @@ function createVueInstance(countryList)
         },
         computed: {
             getCountries: function () {
+
+                if (this.search != '') {
+                    this.filteredCountries = this.countries
+                        .filter(
+                            (entry) => this.countries.length
+                                ? Object.keys(this.countries[0])
+                                    .some(key => ('' + entry[key]).toLowerCase().includes(this.search.toLowerCase()))
+                                : true
+                        );
+
+                    this.pagination.currentPage = 1;
+                }
+
+                if (this.search == '' || this.filteredCountries == null)
+                    this.filteredCountries = this.countries;
+
                 let current = this.pagination.currentPage * this.pagination.itemsPerPage;
                 let start = current - this.pagination.itemsPerPage;
-                var output = this.countries.slice(start, current);
-
+                var output = this.filteredCountries.slice(start, current);
+                 
                 return output;
             },
             getPageCount: function () {
-                return Math.ceil(this.countries.length / this.pagination.itemsPerPage);
+                return Math.ceil(this.filteredCountries.length / this.pagination.itemsPerPage);
             }
         },
         components: {

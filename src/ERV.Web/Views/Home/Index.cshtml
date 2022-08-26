@@ -5,15 +5,6 @@
     {
         AdditionalText = Lang("_Countries"),
         Image = string.Concat(settings.Value.BaseUrl, "images/top/country.jpg"),
-        BreadCrumb = new List<BreadCrumbDTO>()
-        {
-            new BreadCrumbDTO()
-            {
-                Action = string.Empty,
-                Text = Lang("_Home"),
-                Order = 1,
-            }
-        }
     };
     var countries = Html.Raw(Json.Serialize(Model));
 }
@@ -24,16 +15,11 @@
     <div class="container">
         @if (Model != null && Model.Count > 0)
         {
-            <div class="row mb-1 align-items-center header-text mb-3">
-                <div class="col-lg-6 col-sm-6">
+            <div class="row mb-1 header-text mb-3">
+                <div class="col-sm-12 d-flex justify-content-center">
                     <h3 class="font-weight-bold heading">
                         @Lang("_CountryList")
                     </h3>
-                </div>
-                <div class="col-lg-6 col-sm-6 text-lg-end">
-                    <p>
-                        <a asp-controller="Country" asp-action="Index" class="btn btn-light btn-sm fw-bold text-primary loading">@Lang("_ViewAllCountries")</a>
-                    </p>
                 </div>
             </div>
             <div class="row gx-5 justify-content-between content-row countries">
