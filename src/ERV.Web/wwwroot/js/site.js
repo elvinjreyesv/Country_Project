@@ -84,7 +84,6 @@ function createVueInstance(countryList)
                 countries: JSON.parse(countryList),
                 filteredCountries:null,
                 pagination: {
-                    countryCount: 0,
                     itemsPerPage: 21,
                     pageRange: 2,
                     marginPages: 1,
@@ -105,7 +104,10 @@ function createVueInstance(countryList)
                         countries: null
                     },
                 },
-                search: ''
+                search: {
+                    prev: '',
+                    new: ''
+                }
             }
         },
         mounted: function () {
@@ -165,16 +167,17 @@ function createVueInstance(countryList)
         computed: {
             getCountries: function () {
 
-                if (this.search != '') {
+                if (this.search.new != '' && this.search.new != this.search.prev) {
                     this.filteredCountries = this.countries
                         .filter(
                             (entry) => this.countries.length
                                 ? Object.keys(this.countries[0])
-                                    .some(key => ('' + entry[key]).toLowerCase().includes(this.search.toLowerCase()))
+                                    .some(key => ('' + entry[key]).toLowerCase().includes(this.search.new.toLowerCase()))
                                 : true
                         );
 
                     this.pagination.currentPage = 1;
+                    this.search.prev = this.search.new;
                 }
 
                 if (this.search == '' || this.filteredCountries == null)
