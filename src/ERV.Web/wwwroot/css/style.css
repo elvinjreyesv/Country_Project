@@ -264,3 +264,7 @@ p {
 .content-row a{
     font-size: 0.9rem;
 }
+
+.page-item{
+    cursor:pointer;
+}

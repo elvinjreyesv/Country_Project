@@ -1,5 +1,5 @@
 ﻿@model List<CountryInfoDTO>
-@*@model IPagedList<CountryInfoDTO>*@
+
 @{
     var topHeader = new TopHeaderDTO()
     {
@@ -15,10 +15,7 @@
             }
         }
     };
-
     var countries = Html.Raw(Json.Serialize(Model));
-
-    //let friendList = '@Html.Raw(Json.Serialize(Model.FriendList))';
 }
 
 @await Html.PartialAsync("~/Views/Shared/Partials/_Top.cshtml", topHeader)
@@ -39,7 +36,7 @@
                     </p>
                 </div>
             </div>
-            <div class="row gx-5 justify-content-between content-row">
+            <div class="row gx-5 justify-content-between content-row countries">
                  @await Html.PartialAsync("~/Views/Country/Partials/_Country.cshtml")
             </div>
         }

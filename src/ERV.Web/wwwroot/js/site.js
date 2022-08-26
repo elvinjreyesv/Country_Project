@@ -192,10 +192,55 @@ function createVueInstance(countryList)
     const app = Vue.createApp({
         data() {
             return {
-                countries: JSON.parse(countryList)
+                countries: JSON.parse(countryList),
+                countriesPaginated: null,
+                region: null,
+                subRegion: null,
+                pagination: {
+                    itemsPerPage: 21,
+                    pageRange: 2,
+                    marginPages: 1,
+                    currentPage: 1
+                }
             }
-        }
-    });
+        },
+        mounted: function () {
+            this.pagination.pageCount = Math.ceil(this.countries.length / 21);
+        },
+        methods: {
+            countryDetails:function (code) {
+                //Filtrar desde countries
+                //Validar que haya resultados
+                //abrir modal con el detalle
+
+                //cada vez que vaya a abrir un modal, cerrar el abierto en el momento
+            },
+            regionDetails: function(name) {
+               
+            },
+            subregionDetails: function(name) {
+                
+            },
+            clickCallback: function (pageNum) {
+                this.pagination.currentPage = Number(pageNum);
+            }
+        },
+        computed: {
+            getCountries: function () {
+                let current = this.pagination.currentPage * this.pagination.itemsPerPage;
+                let start = current - this.pagination.itemsPerPage;
+                var output = this.countries.slice(start, current);
+
+                return output;
+            },
+            getPageCount: function () {
+                return Math.ceil(this.countries.length / this.pagination.itemsPerPage);
+            }
+        },
+        components: {
+            paginate: VuejsPaginateNext,
+        },
+    }).use("VuejsPaginateNext");
 
     app.mount("#app");
 }

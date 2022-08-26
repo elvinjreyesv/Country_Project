@@ -23,21 +23,6 @@ namespace ERV.Web.Controllers
             _logger = logger;
         }
 
-        [HttpGet("Country")]
-        public async Task<IActionResult> Index()
-        {
-            try
-            {
-                var result = await ApiClient.GetCountries(InputParameter, AppSettings.SecretKey);
-
-                return View(result);
-            }
-            catch (Exception ex)
-            {
-                return await Error(EErrorCodeClientApi.HomeController, ex);
-            }
-        }
-
         [HttpGet("Country/{code}")]
         public async Task<IActionResult> Country([FromRoute] string code)
         {
