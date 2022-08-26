@@ -7,6 +7,6 @@ This version has the following features:
 * Has filtering option 
 * Content is paginated. 
 
-The backend is consuming a single endpoint (all countries), because all the required information along the process is there. this is an improved version, based on the first implementation. 
+The backend is consuming a single endpoint (all countries), because all the required information along the process is there. This is an improved version, based on the first implementation. 
 
 Most of the process takes action on the frontend.
