@@ -130,7 +130,7 @@ function createVueInstance(countryList)
                         return total + currentValue.population;
                     }, 0);
 
-                    const subRegions = countries.map(item => item.subRegion).filter((value, index, self) => self.indexOf(value) === index)
+                    const subRegions = countries.map(item => item.subRegion).filter((value, index, self) => self.indexOf(value) === index && value != '' && value != null)
 
                     this.details.region.name = name;
                     this.details.region.subRegions = subRegions;
