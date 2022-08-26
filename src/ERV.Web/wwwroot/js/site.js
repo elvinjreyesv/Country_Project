@@ -138,7 +138,7 @@ function createVueInstance(countryList)
                     this.details.region.countries = countries;
                    
                     if (this.details.region.countries != null)
-                        $('#regionDetailModal').modal('show');
+                        $('#regionDetailModal').modal('show'); 
                 }
             },
             subregionDetails: function(name) {
@@ -155,7 +155,7 @@ function createVueInstance(countryList)
                     this.details.subRegion.countries = countries;
 
                     if (this.details.subRegion.countries != null)
-                        $('#subRegionDetailModal').modal('show');
+                        $('#subRegionDetailModal').modal('show');   
                 }
             },
             clickCallback: function (pageNum) {
