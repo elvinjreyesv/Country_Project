@@ -1,4 +1,5 @@
 ﻿using ERV.App.Infrastructure.Utils;
+using ERV.App.Infrastructure.Utils.Constants;
 using ERV.App.Models.Enums;
 using ERV.App.Models.ViewModels.Shared;
 using ERV.App.Services.Abstracts;
@@ -39,7 +40,9 @@ namespace ERV.Web.Api.Filters
                     continue;
 
                 pageValidated = true;
-                var isValidRequest = IsValidRequest(context.ActionArguments[key], dto.Id, dto.Token);
+                var isValidRequest = dto.Token == ContentConstants.Token && _settingsService.GeneralConfig().PostmanNoToken
+                    ? true
+                    : IsValidRequest(context.ActionArguments[key], dto.Id, dto.Token);
 
                 dto.SetDefaults();
                 if (!isValidRequest)
@@ -55,6 +58,7 @@ namespace ERV.Web.Api.Filters
 
         public void OnActionExecuted(ActionExecutedContext context)
         { }
+
         #region Helper
         private bool IsValidRequest<T>(T value, string id, string clientToken) where T : class
         {

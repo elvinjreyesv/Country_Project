@@ -13,14 +13,5 @@ namespace ERV.App.Infrastructure.Utils.RefitInterfaces
     {
         [Get("/api/v1/Countries/?Id={id}&Token={token}")]
         Task<List<CountryDTO>> GetCountries(string id, string token);
-
-        [Get("/api/v1/Countries/Country?Code={countryCode}&Id={id}&Token={token}")]
-        Task<AppResponse<EAppResponse, CountryDTO>> GetCountry(string countryCode, string id, string token);
-
-        [Get("/api/v1/Countries/Region?Name={regionName}&Id={id}&Token={token}")]
-        Task<AppResponse<EAppResponse, RegionDTO>> GetRegion(string regionName, string id, string token);
-
-        [Get("/api/v1/Countries/SubRegion?Name={regionName}&Id={id}&Token={token}")]
-        Task<AppResponse<EAppResponse, SubRegionDTO>> GetSubRegion(string regionName, string id, string token);
     }
 }

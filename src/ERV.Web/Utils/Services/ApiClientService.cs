@@ -26,21 +26,6 @@ namespace ERV.Web.Utils.Services
             dto.Token = TokenEncrypter.Encrypt(dto, secretKey);
             return await Rest.GetCountries(dto.Id, dto.Token);
         }
-        public async Task<AppResponse<EAppResponse, CountryDTO>> GetCountry(CountryInputDTO dto, string secretKey)
-        {
-            dto.Token = TokenEncrypter.Encrypt(dto, secretKey);
-            return await Rest.GetCountry(dto.Code, dto.Id, dto.Token);
-        }
-        public async Task<AppResponse<EAppResponse, RegionDTO>> GetRegion(RegionInputDTO dto, string secretKey)
-        {
-            dto.Token = TokenEncrypter.Encrypt(dto, secretKey);
-            return await Rest.GetRegion(dto.Name, dto.Id, dto.Token);
-        }
-        public async Task<AppResponse<EAppResponse, SubRegionDTO>> GetSubRegion(RegionInputDTO dto, string secretKey)
-        {
-            dto.Token = TokenEncrypter.Encrypt(dto, secretKey);
-            return await Rest.GetSubRegion(dto.Name, dto.Id, dto.Token);
-        }
         #endregion
     }
 }

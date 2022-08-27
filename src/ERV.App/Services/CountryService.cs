@@ -40,16 +40,16 @@ namespace ERV.App.Services
                 return Enumerable.Empty<CountryDTO>().ToList();
             }
         }
-        public async Task<AppResponse<EAppResponse, CountryDTO>> CountryInformation(string countryCode)
+        public async Task<AppResponse<EAppResponse, CountryDTO>> CountryInformation(string code)
         {
             var output = default(CountryDTO);
 
-            if (string.IsNullOrWhiteSpace(countryCode))
+            if (string.IsNullOrWhiteSpace(code))
                 return AppResponse.Create(EAppResponse.InvalidInput, output);
 
             try
             {
-                var country = await _countryRepository.GetCountryDetails(countryCode);
+                var country = await _countryRepository.GetCountryDetails(code);
                 var countryList = Enumerable.Empty<Country>().ToList();
 
                 if (country != null)
@@ -64,25 +64,24 @@ namespace ERV.App.Services
             }
             catch (Exception ex)
             {
-                //_logSystemService.AddExceptionLog(ex);
                 return AppResponse.Create(EAppResponse.UnhandledError, output);
             }
         }
-        public async Task<AppResponse<EAppResponse, RegionDTO>> RegionInformation(string regionName)
+        public async Task<AppResponse<EAppResponse, RegionDTO>> RegionInformation(string name)
         {
             var output = default(RegionDTO);
 
-            if (string.IsNullOrWhiteSpace(regionName))
+            if (string.IsNullOrWhiteSpace(name))
                 return AppResponse.Create(EAppResponse.InvalidInput, output);
 
             try
             {
-                var regionDetails = await _countryRepository.GetRegionDetails(regionName);
+                var regionDetails = await _countryRepository.GetRegionDetails(name);
                 if (regionDetails != null && regionDetails.Any())
                 {
                     output = new RegionDTO()
                     {
-                        Name = regionName,
+                        Name = name,
                         SubRegions = await MapSubRegionsContent(regionDetails),
                     };
                 }
@@ -91,26 +90,25 @@ namespace ERV.App.Services
             }
             catch (Exception ex)
             {
-                //_logSystemService.AddExceptionLog(ex);
                 return AppResponse.Create(EAppResponse.UnhandledError, output);
             }
         }
-        public async Task<AppResponse<EAppResponse, SubRegionDTO>> SubRegionInformation(string subRegionName)
+        public async Task<AppResponse<EAppResponse, SubRegionDTO>> SubRegionInformation(string name)
         {
             var output = default(SubRegionDTO);
 
-            if (string.IsNullOrWhiteSpace(subRegionName))
+            if (string.IsNullOrWhiteSpace(name))
                 return AppResponse.Create(EAppResponse.InvalidInput, output);
 
             try
             {
-                var subRegionDetails = await _countryRepository.GetRegionDetails(subRegionName);
+                var subRegionDetails = await _countryRepository.GetRegionDetails(name);
                 if (subRegionDetails != null && subRegionDetails.Any())
                 {
                     var countryList = await _countryRepository.GetCountries();
                     output = new SubRegionDTO()
                     {
-                        Name = subRegionName,
+                        Name = name,
                         Countries = await MapCountriesContent(subRegionDetails, countryList),
                         RegionName = subRegionDetails?.FirstOrDefault(row=>row !=null)?.region ?? string.Empty
                     };
@@ -120,7 +118,6 @@ namespace ERV.App.Services
             }
             catch (Exception ex)
             {
-                //_logSystemService.AddExceptionLog(ex);
                 return AppResponse.Create(EAppResponse.UnhandledError, output);
             }
         }

@@ -30,13 +30,13 @@ namespace ERV.Web.Api.Controllers
             return Ok(content);
         }
 
-        [HttpGet("Country")]
+        [HttpGet("{Code}")]
         [Produces(typeof(AppResponse<EAppResponse, CountryDTO>))]
-        public async Task<ActionResult<AppResponse<EAppResponse, CountryDTO>>> Country([FromQuery] CountryInputDTO input)
+        public async Task<ActionResult<AppResponse<EAppResponse, CountryDTO>>> Country([FromRoute] string Code, [FromQuery] ClientInputDTO dto)
         {
             try
             {
-                var content = await _countryService.CountryInformation(input.Code);
+                var content = await _countryService.CountryInformation(Code);
                 return Ok(content);
             }
             catch (Exception ex)
@@ -44,22 +44,6 @@ namespace ERV.Web.Api.Controllers
 
                 throw;
             }
-        }
-
-        [HttpGet("Region")]
-        [Produces(typeof(AppResponse<EAppResponse, RegionDTO>))]
-        public async Task<ActionResult<AppResponse<EAppResponse, RegionDTO>>> Region([FromQuery] RegionInputDTO input)
-        {
-            var content = await _countryService.RegionInformation(input.Name);
-            return Ok(content);
-        }
-
-        [HttpGet("SubRegion")]
-        [Produces(typeof(AppResponse<EAppResponse, SubRegionDTO>))]
-        public async Task<ActionResult<AppResponse<EAppResponse, SubRegionDTO>>> SubRegion([FromQuery] RegionInputDTO input)
-        {
-            var content = await _countryService.SubRegionInformation(input.Name);
-            return Ok(content);
         }
     }
 }

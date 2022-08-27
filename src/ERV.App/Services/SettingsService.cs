@@ -38,5 +38,9 @@ namespace ERV.App.Services
         {
             return settings.JwtConfig;
         }
+        public GeneralConfig GeneralConfig()
+        {
+            return settings.GeneralConfig;
+        }
     }
 }

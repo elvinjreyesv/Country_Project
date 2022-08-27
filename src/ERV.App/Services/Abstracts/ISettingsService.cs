@@ -12,6 +12,7 @@ namespace ERV.App.Services.Abstracts
         SiteInfo SiteInfo(string id);
         SiteInfo SiteInfo();
         JwtConfig JwtConfig();
+        GeneralConfig GeneralConfig();
         bool IsSiteRegistered(string id);
     }
 }

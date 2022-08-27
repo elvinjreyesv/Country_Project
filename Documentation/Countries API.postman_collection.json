@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "ec0b57e4-6303-43be-b942-336266618563",
+		"name": "Countries API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7929603"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Countries",
+					"item": [
+						{
+							"name": "Countries",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7123/api/v1/Countries?Id=001&Token=POSTMAN",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7123",
+									"path": [
+										"api",
+										"v1",
+										"Countries"
+									],
+									"query": [
+										{
+											"key": "Id",
+											"value": "001"
+										},
+										{
+											"key": "Token",
+											"value": "POSTMAN"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Country",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7123/api/v1/Countries/DOM?Id=001&Token=POSTMAN",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7123",
+									"path": [
+										"api",
+										"v1",
+										"Countries",
+										"DOM"
+									],
+									"query": [
+										{
+											"key": "Id",
+											"value": "001"
+										},
+										{
+											"key": "Token",
+											"value": "POSTMAN"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Regions",
+					"item": [
+						{
+							"name": "Region",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7123/api/v1/Regions/Americas?Id=001&Token=POSTMAN",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7123",
+									"path": [
+										"api",
+										"v1",
+										"Regions",
+										"Americas"
+									],
+									"query": [
+										{
+											"key": "Id",
+											"value": "001"
+										},
+										{
+											"key": "Token",
+											"value": "POSTMAN"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SubRegion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7123/api/v1/Regions/Americas/SubRegion/Caribbean/?Id=001&Token=POSTMAN",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7123",
+									"path": [
+										"api",
+										"v1",
+										"Regions",
+										"Americas",
+										"SubRegion",
+										"Caribbean",
+										""
+									],
+									"query": [
+										{
+											"key": "Id",
+											"value": "001"
+										},
+										{
+											"key": "Token",
+											"value": "POSTMAN"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

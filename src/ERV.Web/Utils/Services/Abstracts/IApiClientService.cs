@@ -8,8 +8,5 @@ namespace ERV.Web.Utils.Services.Abstracts
     public interface IApiClientService
     {
         Task<List<CountryDTO>> GetCountries(ClientInputDTO dto, string secretKey);
-        Task<AppResponse<EAppResponse, CountryDTO>> GetCountry(CountryInputDTO dto, string secretKey);
-        Task<AppResponse<EAppResponse, RegionDTO>> GetRegion(RegionInputDTO dto, string secretKey);
-        Task<AppResponse<EAppResponse, SubRegionDTO>> GetSubRegion(RegionInputDTO dto, string secretKey);
     }
 }

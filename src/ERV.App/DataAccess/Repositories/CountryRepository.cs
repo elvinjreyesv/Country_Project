@@ -52,17 +52,17 @@ namespace ERV.App.DataAccess.Repositories
                 return Enumerable.Empty<Country>().ToList();
             }
         }
-        public async Task<Country> GetCountryDetails(string countryCode)
+        public async Task<Country> GetCountryDetails(string code)
         {
             try
             {
                 var country = new Country();
-                var cacheKey = $"{CacheKeyConstants.Country}_{countryCode}";
+                var cacheKey = $"{CacheKeyConstants.Country}_{code}";
 
                 if (!_memoryCache.TryGetValue(cacheKey, out country)
                     && !_memoryCache.TryGetValue(cacheKey, out country))
                 {
-                    country = (await Rest.GetCountryDetails(countryCode))?.FirstOrDefault();
+                    country = (await Rest.GetCountryDetails(code))?.FirstOrDefault();
                     _memoryCache.Set(cacheKey, country, cacheExpiryOptions);
                 }
                     
@@ -73,14 +73,14 @@ namespace ERV.App.DataAccess.Repositories
                 return default(Country);
             }
         }
-        public async Task<List<Country>> GetRegionDetails(string region)
+        public async Task<List<Country>> GetRegionDetails(string name)
         {
             try
             {
-                var cacheKey = $"{CacheKeyConstants.Region}_{region}";
+                var cacheKey = $"{CacheKeyConstants.Region}_{name}";
                 if (!_memoryCache.TryGetValue(cacheKey, out List<Country> regionDetails))
                 {
-                    regionDetails = await Rest.GetRegionDetails(region);
+                    regionDetails = await Rest.GetRegionDetails(name);
                     _memoryCache.Set(cacheKey, regionDetails, cacheExpiryOptions);
                 }
 
@@ -91,14 +91,14 @@ namespace ERV.App.DataAccess.Repositories
                 return Enumerable.Empty<Country>().ToList();
             }
         }
-        public async Task<List<Country>> GetSubRegions(string subRegionName)
+        public async Task<List<Country>> GetSubRegions(string name)
         {
             try
             {
-                var cacheKey = $"{CacheKeyConstants.SubRegion}_{subRegionName}";
+                var cacheKey = $"{CacheKeyConstants.SubRegion}_{name}";
                 if (!_memoryCache.TryGetValue(cacheKey, out List<Country> subRegionDetails))
                 {
-                    subRegionDetails = await Rest.GetSubRegions(subRegionName);
+                    subRegionDetails = await Rest.GetSubRegions(name);
                     _memoryCache.Set(cacheKey, subRegionDetails, cacheExpiryOptions);
                 }
                 return subRegionDetails;

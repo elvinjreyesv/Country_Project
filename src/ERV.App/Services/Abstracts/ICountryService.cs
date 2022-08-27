@@ -12,8 +12,8 @@ namespace ERV.App.Services.Abstracts
     public interface ICountryService
     {
         Task<List<CountryDTO>> Countries();
-        Task<AppResponse<EAppResponse, CountryDTO>> CountryInformation(string countryCode);
-        Task<AppResponse<EAppResponse, RegionDTO>> RegionInformation(string regionName);
-        Task<AppResponse<EAppResponse, SubRegionDTO>> SubRegionInformation(string subRegionName);
+        Task<AppResponse<EAppResponse, CountryDTO>> CountryInformation(string code);
+        Task<AppResponse<EAppResponse, RegionDTO>> RegionInformation(string name);
+        Task<AppResponse<EAppResponse, SubRegionDTO>> SubRegionInformation(string name);
     }
 }

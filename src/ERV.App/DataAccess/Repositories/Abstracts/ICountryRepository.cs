@@ -10,8 +10,8 @@ namespace ERV.App.DataAccess.Repositories.Abstracts
     public interface ICountryRepository
     {
         Task<List<Country>> GetCountries();
-        Task<Country> GetCountryDetails(string countryCode);
-        Task<List<Country>> GetRegionDetails(string region);
-        Task<List<Country>> GetSubRegions(string subRegionName);
+        Task<Country> GetCountryDetails(string code);
+        Task<List<Country>> GetRegionDetails(string name);
+        Task<List<Country>> GetSubRegions(string name);
     }
 }

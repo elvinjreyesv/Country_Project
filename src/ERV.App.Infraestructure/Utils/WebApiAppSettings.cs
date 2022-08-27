@@ -12,6 +12,7 @@ namespace ERV.App.Infrastructure.Utils
         public List<ExternalServices> ExternalServices { get; set; }
         public JwtConfig JwtConfig { get; set; }
         public CacheConfiguration CacheConfiguration { get; set; }
+        public GeneralConfig GeneralConfig { get; set; }
     }
     public class JwtConfig
     {
@@ -23,6 +24,7 @@ namespace ERV.App.Infrastructure.Utils
     {
         public string Id { get; set; }
         public string SecretKey { get; set; }
+        public bool PostmanNoToken { get; set; }
     }
     public class ExternalServices
     {
@@ -35,5 +37,10 @@ namespace ERV.App.Infrastructure.Utils
     {
         public int AbsoluteExpirationSeconds { get; set; }
         public int SlidingExpirationSeconds { get; set; }
+    }
+
+    public class GeneralConfig
+    {
+        public bool PostmanNoToken { get; set; }
     }
 }
