@@ -166,21 +166,27 @@ function createVueInstance(countryList)
         },
         computed: {
             getCountries: function () {
+                const isSearch = this.search.new != '';
 
                 if (this.search.new != '' && this.search.new != this.search.prev) {
-                    this.filteredCountries = this.countries
-                        .filter(
-                            (entry) => this.countries.length
-                                ? Object.keys(this.countries[0])
-                                    .some(key => ('' + entry[key]).toLowerCase().includes(this.search.new.toLowerCase()))
-                                : true
-                        );
+                    if (isSearch) {
+                        const attributeFilter = ['name', 'region', 'subRegion'];
 
+                        this.filteredCountries = this.countries
+                            .filter(
+                                (entry) => this.countries.length
+                                    ? attributeFilter
+                                        .some(key => ('' + entry[key]).toLowerCase().includes(this.search.new.toLowerCase()))
+                                    : true
+                        );
+                    }
+
+                    this.search.prev = isSearch ? this.search.new : '';
                     this.pagination.currentPage = 1;
-                    this.search.prev = this.search.new;
+                    $(".pagination a:eq(1)")[0].click();
                 }
 
-                if (this.search == '' || this.filteredCountries == null)
+                if (this.search.new == '' || this.filteredCountries == null)
                     this.filteredCountries = this.countries;
 
                 let current = this.pagination.currentPage * this.pagination.itemsPerPage;

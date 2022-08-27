@@ -53,6 +53,12 @@ body {
     }
 }
 
+@media (max-width: 350px) {
+    .region-item-title {
+        font-size: 1rem;
+    }
+}
+
 .hero {
     background-size: cover;
     height: 377px;
