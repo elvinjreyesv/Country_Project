@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "ec0b57e4-6303-43be-b942-336266618563",
 		"name": "Countries API",
+		"description": "For testing purposes the Token is set to POSTMAN, combined with a appsetting key in the API project; that's because an encrypted token is being validated in the server, that is generated in the client from the data in the request (that encryption is skipped here because there is no way to generate it )",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7929603"
 	},
